@@ -7,10 +7,7 @@ const Customers = () => {
     return (
         <div className={classes.users}>
             <h1>Customer list</h1>
-            <button>Create</button>
-            <PostCustomers/>
-            <PostCustomers/>
-            <PostCustomers/>
+
         </div>
     );
 }

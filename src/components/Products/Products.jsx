@@ -5,7 +5,7 @@ import PostProducts from './PostProducts/PostProducts';
 const Products = () => {
     return (
         <div className={classes.grocery}>
-            <PostProducts/>
+            <h1>Products list</h1>
         </div>
     );
 }
