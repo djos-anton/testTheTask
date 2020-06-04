@@ -9,3 +9,7 @@ h1 {
     margin-left: 115px;
 }
 
+.container {
+    width: 552px;
+    margin: 40px auto;
+}

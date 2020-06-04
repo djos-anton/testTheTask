@@ -4,7 +4,9 @@ import classes from "./PostCustomers.module.css";
 const PostCustomers = () => {
     return (
             <div className={classes.item}>
-                {/*User 1*/}
+                <div>User 1</div>
+                <div>User 2</div>
+                <div>User 3</div>
             </div>
     );
 }
