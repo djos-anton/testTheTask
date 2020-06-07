@@ -23,6 +23,7 @@ const Modal = ({
                         </div>
                         <div className="modalBody">
                             {children}
+                            test
                         </div>
                         <div className="modalFooter">
                             <Button onClick={onCancel} invert>Cancel</Button>
