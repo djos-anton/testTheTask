@@ -6,8 +6,7 @@ import Products from './components/Products/Products';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route } from "react-router-dom";
 
-const App = () => {
-
+const App = (props) => {
     let state = {
         itemsList : [
             { id: 1, name: "Mark Benson", price: "353 Rochester St, Rialto FL 43250", number: 555-534-2342, checked: false},
@@ -20,7 +19,7 @@ const App = () => {
     return (
         <div>
             <Header/>
-            <Route path='/customers' render={() => <Customers items={state.itemsList}/>} />
+            <Route path='/customers' render={() => <Customers/>}/>
             <Route path='/products' render={() => <Products/>} />
         </div>
 );

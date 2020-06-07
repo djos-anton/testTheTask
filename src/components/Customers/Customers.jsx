@@ -1,16 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from "./Customers.module.css";
 import PostCustomers from './PostCustomers/PostCustomers';
-import ButtonCustomers from './ButtonCustomers/ButtonCustomers';
+import Button from './Button/Button';
+import Modal from './Modal/Modal';
 
 const Customers = (props) => {
+
+    const [isOpen, setIsOpen]  = useState(false);
+    const fn = () => setIsOpen(!isOpen);
+
+
+
     return (
         <div className={classes.users}>
             <h1>Customer list</h1>
             <div className={classes.container}>
-                <ButtonCustomers/>
+                <Button onClick={fn}/>
             </div>
-            <PostCustomers items={props.items}/>
+            <PostCustomers/>
+            <Modal isOpen={isOpen} onSubmit ={fn} onCancel={fn}/>
         </div>
     );
 }
