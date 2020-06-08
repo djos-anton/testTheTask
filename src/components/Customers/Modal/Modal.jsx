@@ -23,7 +23,9 @@ const Modal = ({
                         </div>
                         <div className="modalBody">
                             {children}
-                            testt
+                            <Button onClick={()=>{alert("Я кнопка добавить пользователя!!!")}}>Add</Button>
+                            <Button onClick={()=>{alert("Я кнопка удалить пользователя!!!")}}>Delete</Button>
+                            <Button onClick={()=>{alert("Я кнопка редактировать пользователя!!!")}}>Edit</Button>
                         </div>
                         <div className="modalFooter">
                             <Button onClick={onCancel} invert>Cancel</Button>

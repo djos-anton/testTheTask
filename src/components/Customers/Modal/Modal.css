@@ -48,3 +48,8 @@
 .modalFooter button:last-child {
     margin-left: 10px;
 }
+
+.modalBody button{
+    margin-left: 10px;
+    color: #FFFFFF;
+}

@@ -5,3 +5,7 @@
 .func.disabled {
     cursor: not-allowed;
 }
+
+Icon {
+    color: black;
+}

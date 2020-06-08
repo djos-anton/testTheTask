@@ -17,7 +17,7 @@ const Customers = (props) => {
             <div className={classes.container}>
                 <Button onClick={fn}/>
             </div>
-            <PostCustomers/>
+            <PostCustomers items={props.items} onChange={props.onChange}/>
             <Modal isOpen={isOpen} onSubmit ={fn} onCancel={fn}/>
         </div>
     );
