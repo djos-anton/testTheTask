@@ -12,7 +12,7 @@ const Modal = ({
                }) => {
 
     return (
-        <>
+        <div>
             { isOpen &&
             <Portal>
                 <div className="modalOverlay">
@@ -35,7 +35,7 @@ const Modal = ({
                 </div>
             </Portal>
             }
-        </>
+    </div>
     );
 };
 

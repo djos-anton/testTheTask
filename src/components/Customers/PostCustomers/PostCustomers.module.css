@@ -5,3 +5,8 @@
 .table {
     width: 90%;
 }
+
+.choice:hover {
+    background: #DADADA;
+    cursor: pointer;
+}

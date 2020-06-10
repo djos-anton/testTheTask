@@ -13,7 +13,7 @@ const Customers = (props) => {
 
     return (
         <div className={classes.users}>
-            <h1>Customer list</h1>
+            <h1>Test list</h1>
             <div className={classes.container}>
                 <Button onClick={fn}/>
             </div>
