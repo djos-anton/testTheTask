@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Customers from './components/Customers/Customers';
+import CustomersParameters from './components/CustomersParameters/CustomersParameters';
 import Products from './components/Products/Products';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route } from "react-router-dom";
 
+
 const App = (props) => {
+
     let state = {
         itemsList : [
             { id: 1, name: "Mark Benson", price: "(353 Rochester St, Rialto FL 43250)", number: "555-534-2342"},
@@ -28,10 +31,13 @@ const App = (props) => {
             <Route path='/customers'
                    render={() => <Customers
                        items={state.itemsList}
+
                        />}/>
             <Route path='/products' render={() => <Products/>} />
+            {/*<Route path={props.usersEdit} render={() => <CustomersParameters/>} />*/}
+
         </div>
 );
-}
+            }
 
 export default App;

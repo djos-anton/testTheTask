@@ -1,0 +1,15 @@
+.users {
+    margin-top: 80px;
+    /*text-align: center;*/
+}
+
+h1 {
+    width: 50%;
+    display: inline-block;
+    margin-left: 115px;
+}
+
+.container {
+    width: 552px;
+    margin: 40px auto;
+}

@@ -18,6 +18,7 @@ const Customers = (props) => {
                 <Button onClick={fn}/>
             </div>
             <PostCustomers items={props.items}
+                           usersEdit={props.usersEdit}
                            />
             <Modal isOpen={isOpen}
                    onSubmit ={fn}
