@@ -7,8 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
 import Products from "../../Products/Products";
 import { Route } from "react-router-dom";
-import ModalCustomers from "./ModalCustomers"
-import {NavLink} from "react-router-dom";
+import ModalCustomers from "./ModalCustomers";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
