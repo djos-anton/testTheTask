@@ -14,11 +14,11 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-//import CloseIcon from '@material-ui/icons/Close';
+//import CloseIcon from '@material-ui/icons/Close'j;
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
-import { styles } from '@material-ui/core/styles';
+import { styles } from './CustomerDialog';
 
 
 
