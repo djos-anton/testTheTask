@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
-import { styles } from './CustomerDialog';
+//import { styles } from './CustomerDialog';
 
 
 
@@ -46,13 +46,10 @@ const Child = ({match}) => {
             setOpen(false);
         };
 
-     const classes = styles();
+     //const classes = styles();
 
     return (
             <div className={classes.item}>
-                <DialogTitle/>
-                <DialogContent/>
-                <DialogActions/>
 
 
                 <List className={classes.table}>
@@ -75,6 +72,7 @@ const Child = ({match}) => {
                         Modal title
                     </DialogTitle>
                     <DialogContent dividers>
+
                         <Typography gutterBottom>
                             Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
                             in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
