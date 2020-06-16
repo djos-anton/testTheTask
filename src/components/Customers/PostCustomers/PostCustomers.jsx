@@ -17,7 +17,8 @@ import IconButton from '@material-ui/core/IconButton';
 //import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import {DialogTitle, DialogContent, DialogActions, styles} from './CustomerDialog';
+import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
+import { styles } from '@material-ui/core/styles';
 
 
 
@@ -29,18 +30,12 @@ const Child = ({match}) => {
 
 
 
-
  const PostCustomers = (props) => {
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
         console.log(customersUrl);
     }
-
-     DialogTitle();
-     DialogContent();
-     DialogActions();
-     styles(theme);
 
         const [open, setOpen] = React.useState(false);
 
@@ -50,8 +45,16 @@ const Child = ({match}) => {
         const handleClose = () => {
             setOpen(false);
         };
+
+     const classes = styles();
+
     return (
             <div className={classes.item}>
+                <DialogTitle/>
+                <DialogContent/>
+                <DialogActions/>
+
+
                 <List className={classes.table}>
                     {props.items.map((item, key)=>{
                         return (
