@@ -11,6 +11,14 @@ import ModalCustomers from "./ModalCustomers";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import IconButton from '@material-ui/core/IconButton';
+//import CloseIcon from '@material-ui/icons/Close';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import {DialogTitle, DialogContent, DialogActions, styles} from './CustomerDialog';
+
 
 
 const Child = ({match}) => {
@@ -19,6 +27,9 @@ const Child = ({match}) => {
     </div>
 }
 
+
+
+
  const PostCustomers = (props) => {
 
     const usersEdit = (id) => {
@@ -26,7 +37,11 @@ const Child = ({match}) => {
         console.log(customersUrl);
     }
 
-   const CustomizedDialogs = () => {
+     DialogTitle();
+     DialogContent();
+     DialogActions();
+     styles(theme);
+
         const [open, setOpen] = React.useState(false);
 
         const handleClickOpen = () => {
@@ -35,7 +50,6 @@ const Child = ({match}) => {
         const handleClose = () => {
             setOpen(false);
         };
-
     return (
             <div className={classes.item}>
                 <List className={classes.table}>
