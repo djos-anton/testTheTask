@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
         const [open, setOpen] = React.useState(false);
         const [currentUser, setCurrentUser] = React.useState(null);
-        //const [name, setName] = React.useState(' ');
+        const [name, setName] = React.useState(' ');
 
         const handleClickOpen = (currentUser) => {
            setCurrentUser(currentUser);
@@ -64,9 +64,9 @@ const useStyles = makeStyles((theme) => ({
             setOpen(false);
         };
 
-        /*const handleChange = (event) => {
+        const handleChange = (event) => {
             setName(event.target.value);
-        };*/
+        };
      //const [currentUser, setCurrentUser] = React.useState(null);
 
      //const classes = styles();
@@ -99,27 +99,40 @@ const useStyles = makeStyles((theme) => ({
                     <DialogContent dividers>
 
                         <Typography gutterBottom>
-                            <div>NAME: {currentUser ? currentUser.name : ''}</div>
+                            <div className={classes.textForm}><span>Name:</span> {currentUser ? currentUser.name : ''}</div>
+                            <div className={classes.textForm}><span>Price:</span> {currentUser ? currentUser.price : ''}</div>
+                            <div className={classes.textForm}><span>Number:</span> {currentUser ? currentUser.number : ''}</div>
 
-
-                            {/*<form className={classes.root} noValidate autoComplete="off">
+                            <form className={classes.root} noValidate autoComplete="off">
+                                <div className={classes.inputForm}>
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="component-outlined">Name</InputLabel>
                                     <OutlinedInput id="component-outlined"
                                                    value={name} onChange={handleChange}
                                                    label="Name" />
                                 </FormControl>
-                            </form>*/}
+                                </div>
+                                <div className={classes.inputForm}>
+                                <FormControl variant="outlined">
+                                    <InputLabel htmlFor="component-outlined">Price</InputLabel>
+                                    <OutlinedInput id="component-outlined"
+                                                   value={name} onChange={handleChange}
+                                                   label="Name" />
+                                </FormControl>
+                                </div>
+                                <div className={classes.inputForm}>
+                                <FormControl variant="outlined">
+                                    <InputLabel htmlFor="component-outlined">Number</InputLabel>
+                                    <OutlinedInput id="component-outlined"
+                                                   value={name} onChange={handleChange}
+                                                   label="Name" />
+                                </FormControl>
+                                </div>
+                            </form>
 
 
                         </Typography>
-                        <Typography gutterBottom>
-                            <div>PRICE: {currentUser ? currentUser.price : ''}</div>
 
-                        </Typography>
-                        <Typography gutterBottom>
-                            <div>NUMBER: {currentUser ? currentUser.number : ''}</div>
-                        </Typography>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose} color="primary">
