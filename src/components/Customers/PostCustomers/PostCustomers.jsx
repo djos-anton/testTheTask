@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
         const [open, setOpen] = React.useState(false);
         const [currentUser, setCurrentUser] = React.useState(null);
         const [name, setName] = React.useState(' ');
+        const [price, setPrice] = React.useState(' ');
+        const [number, setNumber] = React.useState(' ');
 
         const handleClickOpen = (currentUser) => {
            setCurrentUser(currentUser);
@@ -64,9 +66,15 @@ const useStyles = makeStyles((theme) => ({
             setOpen(false);
         };
 
-        const handleChange = (event) => {
+        const handleChangeName = (event) => {
             setName(event.target.value);
         };
+        const handleChangePrice = (event) => {
+            setPrice(event.target.value);
+     };
+        const handleChangeNumber = (event) => {
+            setNumber(event.target.value);
+     };
      //const [currentUser, setCurrentUser] = React.useState(null);
 
      //const classes = styles();
@@ -108,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="component-outlined">Name</InputLabel>
                                     <OutlinedInput id="component-outlined"
-                                                   value={name} onChange={handleChange}
+                                                   value={name} onChange={handleChangeName}
                                                    label="Name" />
                                 </FormControl>
                                 </div>
@@ -116,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="component-outlined">Price</InputLabel>
                                     <OutlinedInput id="component-outlined"
-                                                   value={name} onChange={handleChange}
+                                                   value={price} onChange={handleChangePrice}
                                                    label="Name" />
                                 </FormControl>
                                 </div>
@@ -124,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="component-outlined">Number</InputLabel>
                                     <OutlinedInput id="component-outlined"
-                                                   value={name} onChange={handleChange}
+                                                   value={number} onChange={handleChangeNumber}
                                                    label="Name" />
                                 </FormControl>
                                 </div>
@@ -135,6 +143,9 @@ const useStyles = makeStyles((theme) => ({
 
                     </DialogContent>
                     <DialogActions>
+                        <Button autoFocus onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
                         <Button autoFocus onClick={handleClose} color="primary">
                             Save changes
                         </Button>
