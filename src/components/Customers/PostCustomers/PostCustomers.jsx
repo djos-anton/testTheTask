@@ -20,6 +20,14 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
 //import { styles } from './CustomerDialog';
 
+import { makeStyles } from '@material-ui/core/styles';
+import FilledInput from '@material-ui/core/FilledInput';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
 
 
 const Child = ({match}) => {
@@ -27,6 +35,14 @@ const Child = ({match}) => {
         <h3>{match.params.id}</h3>
     </div>
 }
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+}));
 
 
 
@@ -37,6 +53,8 @@ const Child = ({match}) => {
         console.log(customersUrl);
     }
         const [open, setOpen] = React.useState(false);
+        const [currentUser, setCurrentUser] = React.useState(null);
+        //const [name, setName] = React.useState(' ');
 
         const handleClickOpen = (currentUser) => {
            setCurrentUser(currentUser);
@@ -46,8 +64,10 @@ const Child = ({match}) => {
             setOpen(false);
         };
 
-
-     const [currentUser, setCurrentUser] = React.useState(null);
+        /*const handleChange = (event) => {
+            setName(event.target.value);
+        };*/
+     //const [currentUser, setCurrentUser] = React.useState(null);
 
      //const classes = styles();
     return (
@@ -80,6 +100,16 @@ const Child = ({match}) => {
 
                         <Typography gutterBottom>
                             <div>NAME: {currentUser ? currentUser.name : ''}</div>
+
+
+                            {/*<form className={classes.root} noValidate autoComplete="off">
+                                <FormControl variant="outlined">
+                                    <InputLabel htmlFor="component-outlined">Name</InputLabel>
+                                    <OutlinedInput id="component-outlined"
+                                                   value={name} onChange={handleChange}
+                                                   label="Name" />
+                                </FormControl>
+                            </form>*/}
 
 
                         </Typography>
