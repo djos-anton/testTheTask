@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./PostCustomers.module.css";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -36,18 +36,20 @@ const Child = ({match}) => {
         let customersUrl = '/customers/' + id;
         console.log(customersUrl);
     }
-
         const [open, setOpen] = React.useState(false);
 
-        const handleClickOpen = () => {
+        const handleClickOpen = (currentUser) => {
+           setCurrentUser(currentUser);
             setOpen(true);
         };
         const handleClose = () => {
             setOpen(false);
         };
 
-     //const classes = styles();
 
+     const [currentUser, setCurrentUser] = React.useState(null);
+
+     //const classes = styles();
     return (
             <div className={classes.item}>
 
@@ -58,7 +60,7 @@ const Child = ({match}) => {
                             <div key={item.id}
                                  className={classes.choice}
                                  onClick={()=>usersEdit(item.id)}>
-                            <Link to={'/customers/' + item.id}  onClick={handleClickOpen}>
+                            <Link onClick={() => handleClickOpen(item)} >
                                 <ListItemText primary={`${item.name } ${item.price}` }
                                               secondary={`${item.number} ${item.id}` }/>
                             </Link>
@@ -67,24 +69,26 @@ const Child = ({match}) => {
                         )
                     })}
                 </List>
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                <Dialog onClose={handleClose}
+                        aria-labelledby="customized-dialog-title"
+                        open={open}
+                        >
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                         Modal title
                     </DialogTitle>
                     <DialogContent dividers>
 
                         <Typography gutterBottom>
-                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                            <div>NAME: {currentUser ? currentUser.name : ''}</div>
+
+
                         </Typography>
                         <Typography gutterBottom>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-                            lacus vel augue laoreet rutrum faucibus dolor auctor.
+                            <div>PRICE: {currentUser ? currentUser.price : ''}</div>
+
                         </Typography>
                         <Typography gutterBottom>
-                            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-                            auctor fringilla.
+                            <div>NUMBER: {currentUser ? currentUser.number : ''}</div>
                         </Typography>
                     </DialogContent>
                     <DialogActions>
