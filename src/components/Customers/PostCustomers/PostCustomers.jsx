@@ -66,18 +66,20 @@ const useStyles = makeStyles((theme) => ({
             setOpen(false);
         };
 
+        let Rename = () => {
+           props.renameUser(handleChangeName, handleChangePrice, handleChangeNumber);
+        }
+
         const handleChangeName = (event) => {
             setName(event.target.value);
         };
         const handleChangePrice = (event) => {
             setPrice(event.target.value);
-     };
+        };
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
-     };
-     //const [currentUser, setCurrentUser] = React.useState(null);
+        };
 
-     //const classes = styles();
     return (
             <div className={classes.item}>
 
@@ -116,8 +118,9 @@ const useStyles = makeStyles((theme) => ({
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="component-outlined">Name</InputLabel>
                                     <OutlinedInput id="component-outlined"
-                                                   value={name} onChange={handleChangeName}
-                                                   label="Name" />
+                                                   value={name}
+                                                   onChange={handleChangeName}
+                                                   label="Name"/>
                                 </FormControl>
                                 </div>
                                 <div className={classes.inputForm}>
@@ -143,11 +146,11 @@ const useStyles = makeStyles((theme) => ({
 
                     </DialogContent>
                     <DialogActions>
-                        <Button autoFocus onClick={handleClose} color="primary">
-                            Cancel
+                        <Button autoFocus onClick={Rename} color="primary">
+                            Rename
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">
-                            Save changes
+                            Cancel
                         </Button>
                     </DialogActions>
                 </Dialog>

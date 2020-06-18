@@ -19,6 +19,7 @@ const Customers = (props) => {
             </div>
             <PostCustomers items={props.items}
                            usersEdit={props.usersEdit}
+                           renameUser={props.renameUser}
                            />
             <Modal isOpen={isOpen}
                    onSubmit ={fn}
