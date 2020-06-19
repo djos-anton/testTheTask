@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 
 
 const App = (props) => {
+
     let state = {
         itemsList : [
             { id: 1, name: "Mark Benson", price: "(353 Rochester St, Rialto FL 43250)", number: "555-534-2342"},
@@ -18,20 +19,32 @@ const App = (props) => {
             { id: 5, name: "Kriatina Pars", price: "(777 Vein St, Sontana EW 78944)", number: "555-325-5864"}
         ]
     }
-    let [checked, setChecked] = useState(false);
+
+    /*let [itemsList, setItemsList]  = React.useState(state.itemsList[
+        { id: 1, name: "Mark Benson", price: "(353 Rochester St, Rialto FL 43250)", number: "555-534-2342"},
+            { id: 2, name: "Bob Smith", price: "(215 Market St, Dansvile CA 83415)", number: "444-253-4252"},
+            { id: 3, name: "John Draper", price: "(890 Main St, Fontana IL 23342)", number: "333-889-7895"},
+            { id: 4, name: "Djulia Vins", price: "(534 Djein St, Montana EW 11278)", number: "777-458-9987"},
+            { id: 5, name: "Kriatina Pars", price: "(777 Vein St, Sontana EW 78944)", number: "555-325-5864"}
+
+        ]);
+    let renameUser = (textId, textName, textPrice, textNumber) => {
+
+        for (let i = 0; i<=5; ++i) {
+        if (itemsList[i].id === textId){
+            setItemsList(itemsList[i] = {
+                id : textId,
+                name: textName,
+                price: textPrice,
+                number: textNumber
+            })
+        }
+    }
+    }*/
+    /*let [checked, setChecked] = useState(false);
     let onChange = () => {
       return  true && setChecked(!checked)
-    }
-
-    let renameUser = (textName, textPrice, textNumber) => {
-        let newText = {
-            id : 6,
-            name: textName,
-            price: textPrice,
-            number: textNumber
-        }
-        state.itemsList[newText];
-    }
+    }*/
 
     return (
         <div>
@@ -39,7 +52,6 @@ const App = (props) => {
             <Route path='/customers'
                    render={() => <Customers
                        items={state.itemsList}
-                       renameUser={renameUser}
                        />}/>
             <Route path='/products' render={() => <Products/>} />
             {/*<Route path={props.usersEdit} render={() => <CustomersParameters/>} />*/}

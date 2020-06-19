@@ -67,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
         };
 
         let Rename = () => {
-           props.renameUser(handleChangeName, handleChangePrice, handleChangeNumber);
+
+
         }
 
         const handleChangeName = (event) => {

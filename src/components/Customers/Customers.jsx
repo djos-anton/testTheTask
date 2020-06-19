@@ -19,7 +19,9 @@ const Customers = (props) => {
             </div>
             <PostCustomers items={props.items}
                            usersEdit={props.usersEdit}
-                           renameUser={props.renameUser}
+                           handleChangeName={props.handleChangeName}
+                           handleChangePrice={props.handleChangePrice}
+                           handleChangeNumber={props.handleChangeNumber}
                            />
             <Modal isOpen={isOpen}
                    onSubmit ={fn}
