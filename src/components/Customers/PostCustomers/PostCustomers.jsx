@@ -14,12 +14,11 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-//import CloseIcon from '@material-ui/icons/Close'j;
+import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
-//import { styles } from './CustomerDialog';
-
+import { styles } from './CustomerDialog';
 import { makeStyles } from '@material-ui/core/styles';
 import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
@@ -27,8 +26,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-
-
 
 const Child = ({match}) => {
   return <div>
@@ -44,19 +41,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
  const PostCustomers = (props) => {
+
+     const {handleSave} = props;
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
         console.log(customersUrl);
     }
-        const [open, setOpen] = React.useState(false);
-        const [currentUser, setCurrentUser] = React.useState(null);
-        const [name, setName] = React.useState(' ');
-        const [price, setPrice] = React.useState(' ');
-        const [number, setNumber] = React.useState(' ');
+        const [open, setOpen] = useState(false);
+        const [currentUser, setCurrentUser] = useState(null);
+        const [name, setName] = useState(' ');
+        const [price, setPrice] = useState(' ');
+        const [number, setNumber] = useState(' ');
+
+        const handleAddClick = () => {
+            setOpen(true);
+        }
 
         const handleClickOpen = (currentUser) => {
            setCurrentUser(currentUser);
@@ -66,9 +67,13 @@ const useStyles = makeStyles((theme) => ({
             setOpen(false);
         };
 
-        let Rename = () => {
-
-
+        let rename = (id) => {
+            const data={
+                id: id,
+                name,
+                price,
+                number,
+            }
         }
 
         const handleChangeName = (event) => {
@@ -83,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
 
     return (
             <div className={classes.item}>
-
+                <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Add</Button>
 
                 <List className={classes.table}>
                     {props.items.map((item, key)=>{
@@ -147,7 +152,10 @@ const useStyles = makeStyles((theme) => ({
 
                     </DialogContent>
                     <DialogActions>
-                        <Button autoFocus onClick={Rename} color="primary">
+                        <Button autoFocus color="primary">
+                            Delete
+                        </Button>
+                        <Button autoFocus onClick={()=>rename(currentUser.id)} color="primary">
                             Rename
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">

@@ -3,8 +3,8 @@
     /*text-align: center;*/
 }
 
-h1 {
-    width: 50%;
+.users h1 {
+    width: 35%;
     display: inline-block;
     margin-left: 115px;
 }
@@ -13,3 +13,4 @@ h1 {
     width: 552px;
     margin: 40px auto;
 }
+
