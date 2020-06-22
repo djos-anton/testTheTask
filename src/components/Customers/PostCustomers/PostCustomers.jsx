@@ -74,7 +74,9 @@ const useStyles = makeStyles((theme) => ({
                 price,
                 number,
             }
+            handleSave(data);
         }
+
 
         const handleChangeName = (event) => {
             setName(event.target.value);
@@ -98,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
                                  onClick={()=>usersEdit(item.id)}>
                             <Link onClick={() => handleClickOpen(item)} >
                                 <ListItemText primary={`${item.name } ${item.price}` }
-                                              secondary={`${item.number} ${item.id}` }/>
+                                              secondary={item.number}/>
                             </Link>
                                 <Divider />
                             </div>
@@ -155,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
                         <Button autoFocus color="primary">
                             Delete
                         </Button>
-                        <Button autoFocus onClick={()=>rename(currentUser.id)} color="primary">
+                        <Button autoFocus onClick={()=>rename(currentUser.id) || setOpen(false)} color="primary">
                             Rename
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">

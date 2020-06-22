@@ -10,7 +10,7 @@ import { Route } from "react-router-dom";
 
 const App = (props) => {
 
-    const {handleSave} = props;
+    //const {handleSave} = props;
 
     let state = {
         itemsList : [
@@ -21,15 +21,13 @@ const App = (props) => {
             { id: 5, name: "Kriatina Pars", price: "(777 Vein St, Sontana EW 78944)", number: "555-325-5864"}
         ]
     }
-
+let handleSave = data => {
     for (let key in state.itemsList) {
-debugger
-        if (state.itemsList[key].id == props.rename.data.id) {
-            state.itemsList[key] = props.rename.data;
-            console.log(props.rename.data.id);
+        if (state.itemsList[key].id === data.id) {
+            state.itemsList[key] = data;
         }
     }
-
+}
 
 
     return (

@@ -24,8 +24,8 @@ const Customers = (props) => {
             </div>*/}
             <PostCustomers items={props.items}
                            usersEdit={props.usersEdit}
-                           handleSave={handleSave}
-                           rename={props.rename}
+                           handleSave={data => handleSave(data)}
+                           //rename={props.rename}
                            //handleChangeName={props.handleChangeName}
                            //handleChangePrice={props.handleChangePrice}
                            //handleChangeNumber={props.handleChangeNumber}
