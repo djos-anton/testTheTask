@@ -60,8 +60,9 @@ const useStyles = makeStyles((theme) => ({
         }
 
         const handleClickOpen = (currentUser) => {
-           setCurrentUser(currentUser);
-            setOpen(true);
+          // setCurrentUser(currentUser);
+           // setOpen(true);
+            store.dispatch({type: 'HANDLE_CLICK_OPEN'});
         };
         const handleClose = () => {
             setOpen(false);
@@ -90,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
 
     return (
             <div className={classes.item}>
-                <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Add</Button>
+                <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Addd</Button>
 
                 <List className={classes.table}>
                     {props.items.map((item, key)=>{

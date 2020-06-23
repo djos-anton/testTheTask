@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route } from "react-router-dom";
 
 
+
 const App = (props) => {
 
     //const {handleSave} = props;
@@ -28,7 +29,6 @@ let handleSave = data => {
         }
     }
 }
-
 
     return (
         <div>
