@@ -26,6 +26,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import {useDispatch, useSelector} from "react-redux";
 
 const Child = ({match}) => {
   return <div>
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
-        console.log(customersUrl);
+        //console.log(customersUrl);
     }
         const [open, setOpen] = useState(false);
         const [currentUser, setCurrentUser] = useState(null);
@@ -60,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
         }
 
         const handleClickOpen = (currentUser) => {
-          // setCurrentUser(currentUser);
-           // setOpen(true);
-            store.dispatch({type: 'HANDLE_CLICK_OPEN'});
+            setCurrentUser(currentUser);
+            setOpen(true);
+
         };
         const handleClose = () => {
             setOpen(false);
@@ -88,13 +89,15 @@ const useStyles = makeStyles((theme) => ({
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
         };
-
+     const data = useSelector(state => state.windowModal.itemsList);
+     //console.log(data);
+     const dispatch = useDispatch()
     return (
             <div className={classes.item}>
                 <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Addd</Button>
 
                 <List className={classes.table}>
-                    {props.items.map((item, key)=>{
+                    {data.map((item, key)=>{
                         return (
                             <div key={item.id}
                                  className={classes.choice}
@@ -158,6 +161,7 @@ const useStyles = makeStyles((theme) => ({
                         <Button autoFocus color="primary">
                             Delete
                         </Button>
+                        {/*<Button autoFocus onClick={()=>rename(currentUser.id) || setOpen(false)} color="primary">*/}
                         <Button autoFocus onClick={()=>rename(currentUser.id) || setOpen(false)} color="primary">
                             Rename
                         </Button>
