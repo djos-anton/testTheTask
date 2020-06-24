@@ -1,4 +1,4 @@
-
+export const RENAME = 'RENAME';
 
 let initialState = {
         itemsList : [
@@ -11,12 +11,29 @@ let initialState = {
 }
 
  let modalReducer = (state = initialState, action) => {
-    //console.log(state)
-    if (action.type === 'HANDLE_CLICK_OPEN') {
-      return
-
-    }
-    return state;
-}
+     switch (action.type) {
+         case RENAME :
+             {
+                      let handleSave = data => {
+         for (let key in state.itemsList) {
+             if (state.itemsList[key].id === data.id) {
+                 state.itemsList[key] = data;
+             }
+         }
+     }
+        let rename = (id) => {
+            const data={
+                id: id,
+                name,
+                price,
+                number,
+            }
+            handleSave(data);
+        }
+             };
+         default:
+             return state;
+     }
+ }
 
 export default modalReducer;

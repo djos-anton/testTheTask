@@ -27,6 +27,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {useDispatch, useSelector} from "react-redux";
+import RENAME from "../../../redux/modalReducer";
 
 const Child = ({match}) => {
   return <div>
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
  const PostCustomers = (props) => {
 
-     const {handleSave} = props;
+     //const {handleSave} = props;
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
@@ -69,7 +70,16 @@ const useStyles = makeStyles((theme) => ({
             setOpen(false);
         };
 
+/*     let handleSave = data => {
+         for (let key in dataList) {
+             if (dataList[key].id === data.id) {
+                 dataList[key] = data;
+             }
+         }
+     }
+
         let rename = (id) => {
+            //debugger
             const data={
                 id: id,
                 name,
@@ -77,7 +87,8 @@ const useStyles = makeStyles((theme) => ({
                 number,
             }
             handleSave(data);
-        }
+            //console.log(data);
+        }*/
 
 
         const handleChangeName = (event) => {
@@ -89,15 +100,15 @@ const useStyles = makeStyles((theme) => ({
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
         };
-     const data = useSelector(state => state.windowModal.itemsList);
+     const dataList = useSelector(state => state.windowModal.itemsList);
      //console.log(data);
-     const dispatch = useDispatch()
+     const dispatch = useDispatch();
     return (
             <div className={classes.item}>
-                <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Addd</Button>
+                <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Add</Button>
 
                 <List className={classes.table}>
-                    {data.map((item, key)=>{
+                    {dataList.map((item, key)=>{
                         return (
                             <div key={item.id}
                                  className={classes.choice}
@@ -162,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
                             Delete
                         </Button>
                         {/*<Button autoFocus onClick={()=>rename(currentUser.id) || setOpen(false)} color="primary">*/}
-                        <Button autoFocus onClick={()=>rename(currentUser.id) || setOpen(false)} color="primary">
+                        <Button autoFocus onClick={(()=>dispatch({type: RENAME} || currentUser.id)) || setOpen(false)} color="primary">
                             Rename
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">

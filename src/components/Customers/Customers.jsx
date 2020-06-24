@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 const Customers = (props) => {
     //const classes = useStyles();
 
-    const {handleSave} = props;
+    //const {handleSave} = props;
 
 /*    const [isOpen, setIsOpen]  = useState(false);
     const fn = () => setIsOpen(!isOpen);*/
