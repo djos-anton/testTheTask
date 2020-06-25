@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "./PostCustomers.module.css";
+import classes from "./CustomerList.module.css";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
- const PostCustomers = (props) => {
+ const CustomerList = (props) => {
 
      //const {handleSave} = props;
 
@@ -56,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
         const [name, setName] = useState(' ');
         const [price, setPrice] = useState(' ');
         const [number, setNumber] = useState(' ');
+        const dataList = useSelector(state => state.windowModal.itemsList);
+        const dispatch = useDispatch();
 
         const handleAddClick = () => {
             setOpen(true);
@@ -89,8 +91,17 @@ const useStyles = makeStyles((theme) => ({
             handleSave(data);
             //console.log(data);
         }*/
-
-
+     const onDispatch = (id) => {
+         dispatch({
+                 type: RENAME, data: {
+                     id,
+                     name,
+                     price,
+                     number,
+                 }
+             },
+             setOpen(false))
+     }
         const handleChangeName = (event) => {
             setName(event.target.value);
         };
@@ -100,9 +111,6 @@ const useStyles = makeStyles((theme) => ({
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
         };
-     const dataList = useSelector(state => state.windowModal.itemsList);
-     //console.log(data);
-     const dispatch = useDispatch();
     return (
             <div className={classes.item}>
                 <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Add</Button>
@@ -130,7 +138,6 @@ const useStyles = makeStyles((theme) => ({
                         Modal title
                     </DialogTitle>
                     <DialogContent dividers>
-
                         <Typography gutterBottom>
                             <div className={classes.textForm}><span>Name:</span> {currentUser ? currentUser.name : ''}</div>
                             <div className={classes.textForm}><span>Price:</span> {currentUser ? currentUser.price : ''}</div>
@@ -163,17 +170,13 @@ const useStyles = makeStyles((theme) => ({
                                 </FormControl>
                                 </div>
                             </form>
-
-
                         </Typography>
-
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus color="primary">
                             Delete
                         </Button>
-                        {/*<Button autoFocus onClick={()=>rename(currentUser.id) || setOpen(false)} color="primary">*/}
-                        <Button autoFocus onClick={(()=>dispatch({type: RENAME} || currentUser.id)) || setOpen(false)} color="primary">
+                        <Button autoFocus onClick={()=>onDispatch(currentUser.id)} color="primary">
                             Rename
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">
@@ -185,4 +188,4 @@ const useStyles = makeStyles((theme) => ({
     );
 }
 
-export default PostCustomers;
+export default CustomerList;

@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./PostCustomers.module.css";
+import classes from "./CustomerList.module.css";
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

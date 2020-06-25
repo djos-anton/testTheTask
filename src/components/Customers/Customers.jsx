@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import classes from "./Customers.module.css";
-import PostCustomers from './PostCustomers/PostCustomers';
+import CustomerList from './CustomerList/CustomerList';
 //import Button from './Button/Button';
 import Modal from './Modal/Modal';
-import {DialogActions} from "./PostCustomers/CustomerDialog";
+import {DialogActions} from "./CustomerList/CustomerDialog";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {useDispatch, useSelector} from "react-redux";
@@ -24,7 +24,7 @@ const Customers = (props) => {
             {/*<div className={classes.container}>
                 <Button onClick={fn}/>
             </div>*/}
-            <PostCustomers items={props.items}
+            <CustomerList items={props.items}
 
                            usersEdit={props.usersEdit}
                            //handleSave={data => handleSave(data)}
