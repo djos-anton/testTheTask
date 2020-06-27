@@ -27,7 +27,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {useDispatch, useSelector} from "react-redux";
-import RENAME from "../../../redux/modalReducer";
+import {ReNaME} from "../../../redux/modalReducer";
 
 const Child = ({match}) => {
   return <div>
@@ -44,64 +44,65 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  const CustomerList = (props) => {
-
+debugger
      //const {handleSave} = props;
 
-    const usersEdit = (id) => {
-        let customersUrl = '/customers/' + id;
-        //console.log(customersUrl);
-    }
-        const [open, setOpen] = useState(false);
-        const [currentUser, setCurrentUser] = useState(null);
-        const [name, setName] = useState(' ');
-        const [price, setPrice] = useState(' ');
-        const [number, setNumber] = useState(' ');
-        const dataList = useSelector(state => state.windowModal.itemsList);
-        const dispatch = useDispatch();
+     const usersEdit = (id) => {
+         let customersUrl = '/customers/' + id;
+         //console.log(customersUrl);
+     }
+     const [open, setOpen] = useState(false);
+     const [currentUser, setCurrentUser] = useState(null);
+     const [name, setName] = useState(' ');
+     const [price, setPrice] = useState(' ');
+     const [number, setNumber] = useState(' ');
 
-        const handleAddClick = () => {
-            setOpen(true);
-        }
-
-        const handleClickOpen = (currentUser) => {
-            setCurrentUser(currentUser);
-            setOpen(true);
-
-        };
-        const handleClose = () => {
-            setOpen(false);
-        };
-
-/*     let handleSave = data => {
-         for (let key in dataList) {
-             if (dataList[key].id === data.id) {
-                 dataList[key] = data;
-             }
-         }
+     const handleAddClick = () => {
+         setOpen(true);
      }
 
-        let rename = (id) => {
-            //debugger
-            const data={
-                id: id,
-                name,
-                price,
-                number,
-            }
-            handleSave(data);
-            //console.log(data);
-        }*/
-     const onDispatch = (id) => {
-         dispatch({
-                 type: RENAME, data: {
-                     id,
+     const handleClickOpen = (currentUser) => {
+         setCurrentUser(currentUser);
+         setOpen(true);
+
+     };
+     const handleClose = () => {
+         setOpen(false);
+     };
+
+     /*     let handleSave = data => {
+              for (let key in dataList) {
+                  if (dataList[key].id === data.id) {
+                      dataList[key] = data;
+                  }
+              }
+          }
+
+             let rename = (id) => {
+                 //debugger
+                 const data={
+                     id: id,
                      name,
                      price,
                      number,
                  }
+                 handleSave(data);
+                 //console.log(data);
+             }*/
+     let onDispatch = (id) => {
+         dispatch({
+                 type: 'RENAME',
+                 data: {
+                     id,
+                     name,
+                     price,
+                     number
+                 }
              },
              setOpen(false))
-     }
+ }
+
+     //console.log(dispatch(onDispatch()));
         const handleChangeName = (event) => {
             setName(event.target.value);
         };
@@ -111,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
         };
+     const dataList = useSelector(state => state.windowModal.itemsList);
+
+     const dispatch = useDispatch();
+
     return (
             <div className={classes.item}>
                 <Button variant="outlined" color="primary" onClick={()=>handleAddClick()}>Add</Button>
@@ -139,6 +144,7 @@ const useStyles = makeStyles((theme) => ({
                     </DialogTitle>
                     <DialogContent dividers>
                         <Typography gutterBottom>
+                            <div className={classes.textForm}><span>Id:</span> {currentUser ? currentUser.id : ''}</div>
                             <div className={classes.textForm}><span>Name:</span> {currentUser ? currentUser.name : ''}</div>
                             <div className={classes.textForm}><span>Price:</span> {currentUser ? currentUser.price : ''}</div>
                             <div className={classes.textForm}><span>Number:</span> {currentUser ? currentUser.number : ''}</div>

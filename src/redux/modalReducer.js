@@ -1,4 +1,4 @@
-export const RENAME = 'RENAME';
+//export const ReNaME = 'RENAME';
 
 let initialState = {
     itemsList: [
@@ -9,11 +9,13 @@ let initialState = {
         {id: 5, name: "Kriatina Pars", price: "(777 Vein St, Sontana EW 78944)", number: "555-325-5864"}
     ]
 }
-
 let modalReducer = (state = initialState, action) => {
+    let a = {...state.itemsList[0]}
+    //console.log(a)
+    const {data} = action;
     switch (action.type) {
-        case RENAME :
-            const {data} = action;
+        case 'RENAME' :
+
             let itemsListCopy = {...state.itemsList};
 
             for (let key in itemsListCopy) {
