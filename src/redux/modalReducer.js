@@ -10,13 +10,13 @@ let initialState = {
     ]
 }
 let modalReducer = (state = initialState, action) => {
-    let a = {...state.itemsList[0]}
-    //console.log(a)
+    let a = {...state}
+    console.log(a)
     const {data} = action;
     switch (action.type) {
         case 'RENAME' :
 
-            let itemsListCopy = {...state.itemsList};
+            let itemsListCopy = [...state.itemsList];
 
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {

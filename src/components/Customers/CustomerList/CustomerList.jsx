@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  const CustomerList = (props) => {
-debugger
      //const {handleSave} = props;
 
      const usersEdit = (id) => {
@@ -56,6 +55,8 @@ debugger
      const [name, setName] = useState(' ');
      const [price, setPrice] = useState(' ');
      const [number, setNumber] = useState(' ');
+     const dataList = useSelector(state => state.windowModal.itemsList);
+     const dispatch = useDispatch();
 
      const handleAddClick = () => {
          setOpen(true);
@@ -89,7 +90,7 @@ debugger
                  handleSave(data);
                  //console.log(data);
              }*/
-     let onDispatch = (id) => {
+    let onDispatch = (id) => {
          dispatch({
                  type: 'RENAME',
                  data: {
@@ -112,9 +113,7 @@ debugger
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
         };
-     const dataList = useSelector(state => state.windowModal.itemsList);
 
-     const dispatch = useDispatch();
 
     return (
             <div className={classes.item}>
