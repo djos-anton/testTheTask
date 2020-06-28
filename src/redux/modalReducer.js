@@ -10,8 +10,6 @@ let initialState = {
     ]
 }
 let modalReducer = (state = initialState, action) => {
-    let a = {...state}
-    console.log(a)
     const {data} = action;
     switch (action.type) {
         case 'RENAME' :

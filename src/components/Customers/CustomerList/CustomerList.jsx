@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./CustomerList.module.css";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
      const dataList = useSelector(state => state.windowModal.itemsList);
      const dispatch = useDispatch();
 
+
+
+    useEffect(()=>{console.log(name)}, [name])
+
      const handleAddClick = () => {
          setOpen(true);
      }
@@ -66,7 +70,9 @@ const useStyles = makeStyles((theme) => ({
          setCurrentUser(currentUser);
          setOpen(true);
 
+         //name = currentUser.name
      };
+
      const handleClose = () => {
          setOpen(false);
      };
@@ -103,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
              setOpen(false))
  }
 
-     //console.log(dispatch(onDispatch()));
         const handleChangeName = (event) => {
             setName(event.target.value);
         };
@@ -113,7 +118,6 @@ const useStyles = makeStyles((theme) => ({
         const handleChangeNumber = (event) => {
             setNumber(event.target.value);
         };
-
 
     return (
             <div className={classes.item}>
@@ -143,11 +147,10 @@ const useStyles = makeStyles((theme) => ({
                     </DialogTitle>
                     <DialogContent dividers>
                         <Typography gutterBottom>
-                            <div className={classes.textForm}><span>Id:</span> {currentUser ? currentUser.id : ''}</div>
+                            {/*<div className={classes.textForm}><span>Id:</span> {currentUser ? currentUser.id : ''}</div>
                             <div className={classes.textForm}><span>Name:</span> {currentUser ? currentUser.name : ''}</div>
                             <div className={classes.textForm}><span>Price:</span> {currentUser ? currentUser.price : ''}</div>
-                            <div className={classes.textForm}><span>Number:</span> {currentUser ? currentUser.number : ''}</div>
-
+                            <div className={classes.textForm}><span>Number:</span> {currentUser ? currentUser.number : ''}</div>*/}
                             <form className={classes.root} noValidate autoComplete="off">
                                 <div className={classes.inputForm}>
                                 <FormControl variant="outlined">
