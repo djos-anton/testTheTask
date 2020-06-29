@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-    useEffect(()=>{console.log(name)}, [name])
+    //useEffect(()=>{console.log(name)}, [name])
 
      const handleAddClick = () => {
          setOpen(true);
@@ -69,8 +69,9 @@ const useStyles = makeStyles((theme) => ({
      const handleClickOpen = (currentUser) => {
          setCurrentUser(currentUser);
          setOpen(true);
-
-         //name = currentUser.name
+         setName(currentUser.name);
+         setPrice(currentUser.price);
+         setNumber(currentUser.number)
      };
 
      const handleClose = () => {
@@ -107,6 +108,8 @@ const useStyles = makeStyles((theme) => ({
                  }
              },
              setOpen(false))
+        setName('')
+
  }
 
         const handleChangeName = (event) => {
