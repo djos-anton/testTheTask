@@ -12,10 +12,8 @@ let initialState = {
 let modalReducer = (state = initialState, action) => {
     const {data} = action;
     switch (action.type) {
-        case 'RENAME' :
-
+        case 'SAVE' : {
             let itemsListCopy = [...state.itemsList];
-
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
                     itemsListCopy[key] = action.data;
@@ -25,6 +23,20 @@ let modalReducer = (state = initialState, action) => {
                 ...state,
                 itemsList: itemsListCopy
             }
+        }
+        case 'DELETE' : {
+            let itemsListCopy = [...state.itemsList];
+            for (let key in itemsListCopy) {
+                if (itemsListCopy[key].id === action.data.id) {
+                   itemsListCopy.splice(key, 1);
+                }
+            }
+            return {
+                ...state,
+                itemsList:itemsListCopy
+            }
+        }
+
         default:
             return state;
     }
