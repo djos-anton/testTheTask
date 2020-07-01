@@ -1,4 +1,6 @@
 //export const ReNaME = 'RENAME';
+import React, {useEffect} from "react";
+
 
 let initialState = {
     itemsList: [
@@ -16,6 +18,9 @@ let modalReducer = (state = initialState, action) => {
             let itemsListCopy = [...state.itemsList];
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
+                    itemsListCopy[key] = action.data;
+                } else if (action.data.id == ' ') {
+                    action.data.id = itemsListCopy.length;
                     itemsListCopy[key] = action.data;
                 }
             }
@@ -36,9 +41,9 @@ let modalReducer = (state = initialState, action) => {
                 itemsList:itemsListCopy
             }
         }
-
         default:
             return state;
     }
+
 }
 export default modalReducer;

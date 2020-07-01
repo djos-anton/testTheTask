@@ -55,25 +55,23 @@ const CustomerList = (props) => {
     const [name, setName] = useState(' ');
     const [price, setPrice] = useState(' ');
     const [number, setNumber] = useState(' ');
+    const [id, setId] = useState(' ');
     const dataList = useSelector(state => state.windowModal.itemsList);
     const dispatch = useDispatch();
+    const [buttonRename, setButtonRename] = useState(true);
 
 
     //useEffect(()=>{console.log(name)}, [name])
 
-    const handleAddClick = () => {
-        setOpen(true);
-        setName(' ');
-        setPrice(' ');
-        setNumber(' ');
-    }
+
 
     const handleClickOpen = (currentUser) => {
         setCurrentUser(currentUser);
         setOpen(true);
         setName(currentUser.name);
         setPrice(currentUser.price);
-        setNumber(currentUser.number)
+        setNumber(currentUser.number);
+        setButtonRename(true);
     };
 
     const handleClose = () => {
@@ -99,7 +97,7 @@ const CustomerList = (props) => {
                 handleSave(data);
                 //console.log(data);
             }*/
-    let onDispatch = (id) => {
+    let onDispatchSave = (id) => {
         dispatch({
                 type: 'SAVE',
                 data: {
@@ -109,8 +107,10 @@ const CustomerList = (props) => {
                     number
                 }
             },
-            setOpen(false))
+            setOpen(false));
     }
+
+    //useEffect(()=>{console.log(id)}, [id])
 
     let onDispatchDelete = (id) => {
         dispatch({
@@ -122,6 +122,14 @@ const CustomerList = (props) => {
             setOpen(false))
     }
 
+    let windiwModalAdd = () => {
+        setButtonRename(false);
+        setOpen(true);
+        setName(' ');
+        setPrice(' ');
+        setNumber(' ');
+        setButtonRename(false);
+    }
 
     const handleChangeName = (event) => {
         setName(event.target.value);
@@ -135,7 +143,7 @@ const CustomerList = (props) => {
 
     return (
         <div className={classes.item}>
-            <Button variant="outlined" color="primary" onClick={() => handleAddClick()}>Add</Button>
+            <Button variant="outlined" color="primary" onClick={() => windiwModalAdd()}>Add</Button>
 
             <List className={classes.table}>
                 {dataList.map((item, key) => {
@@ -195,10 +203,15 @@ const CustomerList = (props) => {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick = {()=> onDispatchDelete(currentUser.id)} color="primary">
-                        Delete
-                    </Button>
-                    <Button autoFocus onClick={() => onDispatch(currentUser.id)} color="primary">
+                    {
+                        buttonRename ?
+                        <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
+                                color="primary">
+                            Delete
+                        </Button> :
+                            null
+                    }
+                    <Button autoFocus onClick={() => onDispatchSave(currentUser.id)} color="primary">
                         Save
                     </Button>
                     <Button autoFocus onClick={handleClose} color="primary">
