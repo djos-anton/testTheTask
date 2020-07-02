@@ -12,6 +12,7 @@ let initialState = {
     ]
 }
 let modalReducer = (state = initialState, action) => {
+    debugger;
     const {data} = action;
     switch (action.type) {
         case 'SAVE' : {
@@ -19,8 +20,8 @@ let modalReducer = (state = initialState, action) => {
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
                     itemsListCopy[key] = action.data;
-                } else if (action.data.id == ' ') {
-                    action.data.id = itemsListCopy.length;
+                } else if (action.data.id === null) {
+                    action.data.id = itemsListCopy.length + 1;
                     itemsListCopy[key] = action.data;
                 }
             }

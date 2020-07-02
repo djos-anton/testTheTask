@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomerList = (props) => {
+    //debugger;
     //const {handleSave} = props;
 
     const usersEdit = (id) => {
@@ -51,7 +52,7 @@ const CustomerList = (props) => {
         //console.log(customersUrl);
     }
     const [open, setOpen] = useState(false);
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState({});
     const [name, setName] = useState(' ');
     const [price, setPrice] = useState(' ');
     const [number, setNumber] = useState(' ');
@@ -129,6 +130,8 @@ const CustomerList = (props) => {
         setPrice(' ');
         setNumber(' ');
         setButtonRename(false);
+        setCurrentUser(null);
+        setId(null);
     }
 
     const handleChangeName = (event) => {
@@ -211,7 +214,7 @@ const CustomerList = (props) => {
                         </Button> :
                             null
                     }
-                    <Button autoFocus onClick={() => onDispatchSave(currentUser.id)} color="primary">
+                    <Button autoFocus onClick={() => onDispatchSave(currentUser && currentUser.id)} color="primary">
                         Save
                     </Button>
                     <Button autoFocus onClick={handleClose} color="primary">
