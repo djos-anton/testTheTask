@@ -20,9 +20,10 @@ let modalReducer = (state = initialState, action) => {
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
                     itemsListCopy[key] = action.data;
-                } else if (action.data.id === null) {
+                } else if (action.data.id === null && action.data.name != null) {
                     let maxObj=itemsListCopy.reduce((prev, cur) => cur.id>prev.id?cur:prev,{id:-Infinity});
                     action.data.id = maxObj.id+1;
+                    action.data.name = 'Yo';
                     itemsListCopy[itemsListCopy.length] = action.data;
                 }
             }
