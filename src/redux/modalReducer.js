@@ -12,21 +12,38 @@ let initialState = {
     ]
 }
 let modalReducer = (state = initialState, action) => {
-    debugger;
+    //debugger;
     const {data} = action;
     switch (action.type) {
+        case 'ADD' : {
+            let itemsListCopy = [...state.itemsList];
+            //for (let key in itemsListCopy) {
+                 //if (action.data.id === null && action.data.name != null) {
+            let newId = 0;
+            for (let key in itemsListCopy) {
+                if (itemsListCopy[key].id > newId) {
+                    newId = itemsListCopy[key].id;
+                    action.data.id = newId + 1;
+                }
+            }
+                    //let maxObj=itemsListCopy.reduce((prev, cur) => cur.id>prev.id?cur:prev,{id:-Infinity});
+                    //action.data.id = maxObj.id+1;
+                    if (action.data.name === " ") {
+                        action.data.name = 'Yo';
+                    }
+                    itemsListCopy[itemsListCopy.length] = action.data;
+                //}
+            //}
+            return {
+                ...state,
+                itemsList: itemsListCopy
+            }
+        }
         case 'SAVE' : {
             let itemsListCopy = [...state.itemsList];
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
                     itemsListCopy[key] = action.data;
-                } else if (action.data.id === null && action.data.name != null) {
-                    let maxObj=itemsListCopy.reduce((prev, cur) => cur.id>prev.id?cur:prev,{id:-Infinity});
-                    action.data.id = maxObj.id+1;
-                    if (action.data.name === " ") {
-                        action.data.name = 'Yo';
-                    }
-                    itemsListCopy[itemsListCopy.length] = action.data;
                 }
             }
             return {

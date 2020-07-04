@@ -99,7 +99,18 @@ const CustomerList = (props) => {
                 //console.log(data);
             }*/
     let onDispatchSave = (id) => {
-        dispatch({
+        if (id===null) {
+            dispatch({
+                type: 'ADD',
+                data: {
+                    id,
+                    name,
+                    price,
+                    number
+                }
+            })
+        } else {
+            dispatch({
                 type: 'SAVE',
                 data: {
                     id,
@@ -107,8 +118,9 @@ const CustomerList = (props) => {
                     price,
                     number
                 }
-            },
-            setOpen(false));
+            })
+        }
+            setOpen(false)
     }
 
     //useEffect(()=>{console.log(id)}, [id])
