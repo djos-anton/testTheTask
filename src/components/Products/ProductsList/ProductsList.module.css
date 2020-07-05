@@ -1,0 +1,22 @@
+ul {
+  list-style: none;
+  margin-left: 75px;
+}
+
+.div {
+    width: 200px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+li {
+    border-bottom: 1px solid #00A5FD;
+    width: 250px;
+    padding-top: 20px;
+    /*padding-bottom: 5px;*/
+}
+
+li:hover {
+    background: #AADAF5;
+    cursor: pointer;
+}

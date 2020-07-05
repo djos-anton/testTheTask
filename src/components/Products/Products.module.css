@@ -1,9 +1,11 @@
 .grocery {
     margin-top: 80px;
+    margin-bottom: 20px;
 }
 
 h1 {
     width: 50%;
     display: inline-block;
     margin-left: 115px;
+
 }
