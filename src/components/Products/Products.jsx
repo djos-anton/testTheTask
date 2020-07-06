@@ -5,18 +5,24 @@ import ProductsList from './ProductsList/ProductsList';
 
 
 const Products = (props) => {
+    const {handleSave} = props;
     return (
         <div className={classes.grocery}>
             <h1>Products list</h1>
             {props.foodsList.map((product, index) => {
-                return <ProductsList product={product} key={product.id} index={index}/>
+                return <ProductsList
+                    product={product}
+                    key={product.id}
+                    index={index}
+                    handleSave={data => handleSave(data)}/>
             })}
         </div>
     );
 }
 
 Products.propTypes = {
-    foodsList: PropTypes.arrayOf(PropTypes.object).isRequired
+    foodsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onCorrection: PropTypes.func.isRequired
 }
 
-export default Products
+export default Products;

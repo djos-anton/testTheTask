@@ -20,3 +20,8 @@ li:hover {
     background: #AADAF5;
     cursor: pointer;
 }
+
+.inptFrm {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

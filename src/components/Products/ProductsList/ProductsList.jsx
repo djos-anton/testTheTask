@@ -10,13 +10,20 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const ProductsList = ({product, index}) => {
+const ProductsList = ({product, index, onChange}) => {
+    debugger
+    const {handleSave} = product;
 
     const [open, setOpen] = useState(false);
     const [food, setFood] = useState(' ');
+    const [cost, setCost] = useState(' ');
+    const [currentProduct, setCurrentProduct] = useState({});
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (currentProduct) => {
+        setCurrentProduct(currentProduct);
         setOpen(true);
+        setFood(currentProduct.food);
+        setCost(currentProduct.cost);
     };
     const handleClose = () => {
         setOpen(false);
@@ -24,6 +31,18 @@ const ProductsList = ({product, index}) => {
     const handleChangeFood = (event) => {
         setFood(event.target.value);
     };
+    const handleChangeCost = (event) => {
+        setCost(event.target.value);
+    };
+
+    let save = (id) => {
+       const data={
+            id,
+           food,
+           cost
+        }
+        handleSave(data);
+    }
 
     return (
             <div className={classes.item}>
@@ -44,6 +63,7 @@ const ProductsList = ({product, index}) => {
                     <DialogContent dividers>
                         <Typography gutterBottom>
                             <form className={classes.root} noValidate autoComplete="off">
+                                <div className={classes.inptFrm}>
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="component-outlined">Food</InputLabel>
                                     <OutlinedInput
@@ -52,6 +72,17 @@ const ProductsList = ({product, index}) => {
                                         onChange={handleChangeFood}
                                         label="Name" />
                                 </FormControl>
+            </div>
+            <div>
+                                <FormControl variant="outlined">
+                                    <InputLabel htmlFor="component-outlined">Cost</InputLabel>
+                                    <OutlinedInput
+                                        id="component-outlined"
+                                        value={cost}
+                                        onChange={handleChangeCost}
+                                        label="Name" />
+                                </FormControl>
+            </div>
                             </form>
                         </Typography>
                     </DialogContent>
@@ -59,7 +90,7 @@ const ProductsList = ({product, index}) => {
                         <Button autoFocus onClick={handleClose} color="primary">
                             Delete
                         </Button>
-                        <Button autoFocus onClick={handleClose} color="primary">
+                        <Button autoFocus onClick={()=>save(product.id)} color="primary">
                             Save
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">
@@ -73,7 +104,8 @@ const ProductsList = ({product, index}) => {
 
 ProductsList.propTypes = {
     foodsList: PropTypes.object.isRequired,
-    index: PropTypes.number
+    index: PropTypes.number,
+    onChange: PropTypes.func.isRequired
 }
 
 export default ProductsList;

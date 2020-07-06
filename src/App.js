@@ -41,6 +41,11 @@ let state = {
     }*/
     /*const data = useSelector(state => state);
     console.log(data)*/
+
+    function handleSave(id) {
+        console.log('food: ', id);
+    }
+
     return (
         <div>
             <Header/>
@@ -50,7 +55,10 @@ let state = {
                        //handleSave={handleSave}
                        //rename={props.rename}
                        />}/>
-            <Route path='/products' render={() => <Products foodsList={state.foodsList}/>} />
+            <Route path='/products'
+                   render={() => <Products
+                       foodsList={state.foodsList}
+                       handleSave={handleSave}/>} />
         </div>
 );
             }
