@@ -5,7 +5,8 @@ import ProductsList from './ProductsList/ProductsList';
 
 
 const Products = (props) => {
-    const {handleSave} = props;
+    //debugger
+    //const {handleSave} = props;
     return (
         <div className={classes.grocery}>
             <h1>Products list</h1>
@@ -14,7 +15,7 @@ const Products = (props) => {
                     product={product}
                     key={product.id}
                     index={index}
-                    handleSave={data => handleSave(data)}/>
+                    /*handleSave={data => handleSave(data)}*//>
             })}
         </div>
     );

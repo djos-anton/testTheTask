@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 const App = (props) => {
-
+//debugger
     //const {handleSave} = props;
 let state = {
     foodsList : [
@@ -42,8 +42,8 @@ let state = {
     /*const data = useSelector(state => state);
     console.log(data)*/
 
-    function handleSave(id) {
-        console.log('food: ', id);
+    let handleSave = (data) => {
+        console.log('food: ', data);
     }
 
     return (
@@ -58,7 +58,7 @@ let state = {
             <Route path='/products'
                    render={() => <Products
                        foodsList={state.foodsList}
-                       handleSave={handleSave}/>} />
+                       /*handleSave={handleSave}*//>} />
         </div>
 );
             }
