@@ -10,9 +10,9 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const ProductsList = (product, index) => {
-    debugger
-    //const {handleSave} = product;
+const ProductsList = (props) => {
+    debugger;
+    const {handleSave} = props;
 
     const [open, setOpen] = useState(false);
     const [food, setFood] = useState(' ');
@@ -41,17 +41,18 @@ const ProductsList = (product, index) => {
            food,
            cost
         }
-        //handleSave(data);
+        handleSave(data);
+       setOpen(false);
     }
 
     return (
             <div className={classes.item}>
                 <ul>
-                    <li  onClick={() => handleClickOpen(product)}>
+                    <li  onClick={() => handleClickOpen(props.product)}>
 
                             <div>
-                                <div className={classes.div}>{product.food}</div>
-                                <span>${product.cost}</span>
+                                <div className={classes.div}>{props.product.food}</div>
+                                <span>${props.product.cost}</span>
                             </div>
 
                     </li>
@@ -90,7 +91,7 @@ const ProductsList = (product, index) => {
                         <Button autoFocus onClick={handleClose} color="primary">
                             Delete
                         </Button>
-                        <Button autoFocus onClick={() => save(product.id)} color="primary">
+                        <Button autoFocus onClick={() => save(props.product.id)} color="primary">
                             Save
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">

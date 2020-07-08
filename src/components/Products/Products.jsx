@@ -5,17 +5,16 @@ import ProductsList from './ProductsList/ProductsList';
 
 
 const Products = (props) => {
-    //debugger
-    //const {handleSave} = props;
+    //debugger;
+    const {handleSave} = props;
     return (
         <div className={classes.grocery}>
             <h1>Products list</h1>
-            {props.foodsList.map((product, index) => {
+            {props.foodsList.map((product, key) => {
                 return <ProductsList
                     product={product}
                     key={product.id}
-                    index={index}
-                    /*handleSave={data => handleSave(data)}*//>
+                    handleSave={data => handleSave(data)}/>
             })}
         </div>
     );

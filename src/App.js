@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 const App = (props) => {
-//debugger
+//debugger;
     //const {handleSave} = props;
 let state = {
     foodsList : [
@@ -43,7 +43,12 @@ let state = {
     console.log(data)*/
 
     let handleSave = (data) => {
-        console.log('food: ', data);
+        for (let key in state.foodsList){
+            if (state.foodsList[key].id === data.id){
+                state.foodsList[key] = data;
+            }
+        }
+        console.log(data.id);
     }
 
     return (
@@ -58,7 +63,7 @@ let state = {
             <Route path='/products'
                    render={() => <Products
                        foodsList={state.foodsList}
-                       /*handleSave={handleSave}*//>} />
+                       handleSave={handleSave}/>} />
         </div>
 );
             }
