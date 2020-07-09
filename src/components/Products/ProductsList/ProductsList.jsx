@@ -11,13 +11,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 const ProductsList = (props) => {
-    debugger;
+   ///debugger;
     const {handleSave} = props;
 
     const [open, setOpen] = useState(false);
     const [food, setFood] = useState(' ');
     const [cost, setCost] = useState(' ');
     const [currentProduct, setCurrentProduct] = useState({});
+
 
     const handleClickOpen = (currentProduct) => {
         setCurrentProduct(currentProduct);
@@ -41,7 +42,9 @@ const ProductsList = (props) => {
            food,
            cost
         }
+        console.log(data);
         handleSave(data);
+
        setOpen(false);
     }
 
@@ -104,7 +107,7 @@ const ProductsList = (props) => {
 }
 
 ProductsList.propTypes = {
-    foodsList: PropTypes.object.isRequired,
+    product: PropTypes.object.isRequired,
     index: PropTypes.number,
     onChange: PropTypes.func.isRequired
 }

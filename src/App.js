@@ -13,15 +13,18 @@ import {useDispatch, useSelector} from "react-redux";
 const App = (props) => {
 //debugger;
     //const {handleSave} = props;
-let state = {
-    foodsList : [
-        {id: 1, food: "juice", cost: "1,3"},
-        {id: 2, food: "milk", cost: "4,1"},
-        {id: 3, food: "bread", cost: "2,7"},
-        {id: 4, food: "butter", cost: "3,5"},
-        {id: 5, food: "flakes", cost: "2,0"}
-    ]
-}
+    const [foodsList, setFoodsList] = useState(
+        [
+            {id: 1, food: "juice", cost: "1,3"},
+            {id: 2, food: "milk", cost: "4,1"},
+            {id: 3, food: "bread", cost: "2,7"},
+            {id: 4, food: "butter", cost: "3,5"},
+            {id: 5, food: "flakes", cost: "2,0"}
+        ]
+    );
+
+
+
     /*let state = {
         itemsList: [
             {id: 1, name: "Mark Benson", price: "(353 Rochester St, Rialto FL 43250)", number: "555-534-2342"},
@@ -43,12 +46,14 @@ let state = {
     console.log(data)*/
 
     let handleSave = (data) => {
-        for (let key in state.foodsList){
-            if (state.foodsList[key].id === data.id){
-                state.foodsList[key] = data;
+        for (let key in foodsList){
+            if (foodsList[key].id === data.id){
+                foodsList[key] = data;
             }
         }
-        console.log(data.id);
+        setFoodsList(foodsList)
+        //console.log(data);
+        console.log(foodsList);
     }
 
     return (
@@ -62,7 +67,7 @@ let state = {
                        />}/>
             <Route path='/products'
                    render={() => <Products
-                       foodsList={state.foodsList}
+                       foodsList={foodsList}
                        handleSave={handleSave}/>} />
         </div>
 );
