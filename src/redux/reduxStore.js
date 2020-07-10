@@ -1,8 +1,10 @@
 import {combineReducers, createStore} from "redux";
 import modalReducer from './modalReducer';
+import foodReducer from './foodReducer';
 
 let reducers = combineReducers({
-    windowModal : modalReducer
+    windowModal : modalReducer,
+    //windowFood: foodReducer
 });
 
 let store = createStore(reducers);

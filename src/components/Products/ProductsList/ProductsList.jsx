@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import classes from './ProductsList.module.css';
 import {DialogTitle, DialogContent, DialogActions} from './../../Customers/CustomerList/CustomerDialog';
@@ -18,6 +18,9 @@ const ProductsList = (props) => {
     const [food, setFood] = useState(' ');
     const [cost, setCost] = useState(' ');
     const [currentProduct, setCurrentProduct] = useState({});
+
+    useEffect( () => {
+        console.log('Yo-Yo')})
 
 
     const handleClickOpen = (currentProduct) => {
@@ -44,7 +47,6 @@ const ProductsList = (props) => {
         }
         console.log(data);
         handleSave(data);
-
        setOpen(false);
     }
 
@@ -95,8 +97,11 @@ const ProductsList = (props) => {
                             Delete
                         </Button>
                         <Button autoFocus onClick={() => save(props.product.id)} color="primary">
-                            Save
+                        Save
                         </Button>
+                        {/*<Button autoFocus onClick={() => save(props.product.id)} color="primary">
+                            Save
+                        </Button>*/}
                         <Button autoFocus onClick={handleClose} color="primary">
                             Cansel
                         </Button>

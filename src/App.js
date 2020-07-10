@@ -5,25 +5,24 @@ import Customers from './components/Customers/Customers';
 import CustomersParameters from './components/CustomersParameters/CustomersParameters';
 import Products from './components/Products/Products';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route } from "react-router-dom";
+import {Route} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-
-
 
 const App = (props) => {
 //debugger;
     //const {handleSave} = props;
-    const [foodsList, setFoodsList] = useState(
-        [
+
+    let state = {
+        foodsList: [
             {id: 1, food: "juice", cost: "1,3"},
             {id: 2, food: "milk", cost: "4,1"},
             {id: 3, food: "bread", cost: "2,7"},
             {id: 4, food: "butter", cost: "3,5"},
             {id: 5, food: "flakes", cost: "2,0"}
         ]
-    );
-
-
+    }
+    let foodsListCopy = [...state.foodsList];
+    const [foodCost, setFoodCost] = useState(foodsListCopy);
 
     /*let state = {
         itemsList: [
@@ -42,19 +41,16 @@ const App = (props) => {
             }
         }
     }*/
-    /*const data = useSelector(state => state);
-    console.log(data)*/
 
     let handleSave = (data) => {
-        for (let key in foodsList){
-            if (foodsList[key].id === data.id){
-                foodsList[key] = data;
+        for (let key in foodsListCopy) {
+            if (foodsListCopy[key].id === data.id) {
+                foodsListCopy[key] = data;
             }
         }
-        setFoodsList(foodsList)
-        //console.log(data);
-        console.log(foodsList);
+        setFoodCost(foodCost);
     }
+    const data = useSelector(state => state);
 
     return (
         <div>
@@ -64,13 +60,13 @@ const App = (props) => {
                        //items={state.itemsList}
                        //handleSave={handleSave}
                        //rename={props.rename}
-                       />}/>
+                   />}/>
             <Route path='/products'
                    render={() => <Products
-                       foodsList={foodsList}
-                       handleSave={handleSave}/>} />
+                       foodsList={foodsListCopy}
+                       handleSave={handleSave}/>}/>
         </div>
-);
-            }
+    );
+}
 
 export default App;
