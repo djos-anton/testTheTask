@@ -26,12 +26,15 @@ let modalReducer = (state = initialState, action) => {
                     action.data.id = newId + 1;
                 }
             }
+            itemsListCopy[itemsListCopy.length] = action.data;
                     //let maxObj=itemsListCopy.reduce((prev, cur) => cur.id>prev.id?cur:prev,{id:-Infinity});
                     //action.data.id = maxObj.id+1;
-                    if (action.data.name === " ") {
-                        action.data.name = 'Yo';
-                    }
-                    itemsListCopy[itemsListCopy.length] = action.data;
+                    // if (action.data.name === " ") {
+                    //     action.data.name = 'Yo';
+                    // }
+
+
+            //console.log(action.data)
                 //}
             //}
             return {

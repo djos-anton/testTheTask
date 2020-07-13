@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
 import PropTypes from 'prop-types';
 import classes from './ProductsList.module.css';
 import {DialogTitle, DialogContent, DialogActions} from './../../Customers/CustomerList/CustomerDialog';
@@ -18,9 +19,11 @@ const ProductsList = (props) => {
     const [food, setFood] = useState(' ');
     const [cost, setCost] = useState(' ');
     const [currentProduct, setCurrentProduct] = useState({});
+    const dispatch = useDispatch();
 
-    useEffect( () => {
-        console.log('Yo-Yo')})
+    /*useEffect( () => {
+        console.log(props)
+    }, [props])*/
 
 
     const handleClickOpen = (currentProduct) => {
@@ -45,10 +48,19 @@ const ProductsList = (props) => {
            food,
            cost
         }
-        console.log(data);
         handleSave(data);
        setOpen(false);
     }
+
+    /*let onDispatchSave = (id) => {
+        dispatch({ type: 'FOOD_EDIT',
+            data:{
+                id,
+                food,
+                cost
+            }})
+        setOpen(false);
+    }*/
 
     return (
             <div className={classes.item}>
@@ -96,12 +108,12 @@ const ProductsList = (props) => {
                         <Button autoFocus onClick={handleClose} color="primary">
                             Delete
                         </Button>
-                        <Button autoFocus onClick={() => save(props.product.id)} color="primary">
+                        {/*<Button autoFocus onClick={() => onDispatchSave(props.product.id)} color="primary">
                         Save
-                        </Button>
-                        {/*<Button autoFocus onClick={() => save(props.product.id)} color="primary">
-                            Save
                         </Button>*/}
+                        <Button autoFocus onClick={() => save(props.product.id)} color="primary">
+                            Save
+                        </Button>
                         <Button autoFocus onClick={handleClose} color="primary">
                             Cansel
                         </Button>

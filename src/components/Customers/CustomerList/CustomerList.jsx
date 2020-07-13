@@ -28,6 +28,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {useDispatch, useSelector} from "react-redux";
 import {ReNaME} from "../../../redux/modalReducer";
+import {bool} from "prop-types";
+import {requiredField} from './../../../utils/validators/validators';
 
 const Child = ({match}) => {
     return <div>
@@ -54,6 +56,9 @@ const CustomerList = (props) => {
     const [open, setOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [name, setName] = useState(' ');
+    const [nameError, setNameError] = useState(' ');
+    const [priceError, setPriceError] = useState(' ');
+    const [numberError, setNumberError] = useState(' ');
     const [price, setPrice] = useState(' ');
     const [number, setNumber] = useState(' ');
     const [id, setId] = useState(' ');
@@ -79,6 +84,21 @@ const CustomerList = (props) => {
         setOpen(false);
     };
 
+
+    let validate = () => {
+        if (name === " ") {
+            setNameError("Ошибка")
+        }
+
+        if (price === " ") {
+            setPriceError("Ошибка")
+        }
+
+        if (number === " ") {
+            setNumberError("Ошибка")
+        }
+    }
+
     /*     let handleSave = data => {
              for (let key in dataList) {
                  if (dataList[key].id === data.id) {
@@ -96,7 +116,6 @@ const CustomerList = (props) => {
                     number,
                 }
                 handleSave(data);
-                //console.log(data);
             }*/
     let onDispatchSave = (id) => {
         if (id===null) {
@@ -120,7 +139,10 @@ const CustomerList = (props) => {
                 }
             })
         }
-            setOpen(false)
+        let isValid = validate();
+        if(isValid){
+
+        }
     }
 
     //useEffect(()=>{console.log(id)}, [id])
@@ -191,27 +213,34 @@ const CustomerList = (props) => {
                         <form className={classes.root} noValidate autoComplete="off">
                             <div className={classes.inputForm}>
                                 <FormControl variant="outlined">
-                                    <InputLabel htmlFor="component-outlined">Name</InputLabel>
+                                    <InputLabel required={true} htmlFor="component-outlined">Name</InputLabel>
                                     <OutlinedInput id="component-outlined"
                                                    value={name}
+                                                   
                                                    onChange={handleChangeName}
                                                    label="Name"/>
+                                     <div style={{color: 'red'}}>{nameError}</div>
                                 </FormControl>
                             </div>
                             <div className={classes.inputForm}>
                                 <FormControl variant="outlined">
-                                    <InputLabel htmlFor="component-outlined">Price</InputLabel>
+                                    <InputLabel required={true} htmlFor="component-outlined">Price</InputLabel>
                                     <OutlinedInput id="component-outlined"
-                                                   value={price} onChange={handleChangePrice}
-                                                   label="Name"/>
+                                                   value={price}
+                                                   onChange={handleChangePrice}
+                                                   label="Price"/>
+                                                   <div style={{color: 'red'}}>{priceError}</div>
                                 </FormControl>
                             </div>
                             <div className={classes.inputForm}>
                                 <FormControl variant="outlined">
-                                    <InputLabel htmlFor="component-outlined">Number</InputLabel>
+                                    <InputLabel required={true} htmlFor="component-outlined">Number</InputLabel>
                                     <OutlinedInput id="component-outlined"
-                                                   value={number} onChange={handleChangeNumber}
-                                                   label="Name"/>
+                                                   value={number}
+                                                   valueError={numberError}
+                                                   onChange={handleChangeNumber}
+                                                   label="Number"/>
+                                                   <div style={{color: 'red'}}>{numberError}</div>
                                 </FormControl>
                             </div>
                         </form>
