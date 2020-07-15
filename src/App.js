@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Customers from './components/Customers/Customers';
+import FormTest from './components/FormTest/FormTest';
 import CustomersParameters from './components/CustomersParameters/CustomersParameters';
 import Products from './components/Products/Products';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -60,6 +61,8 @@ const App = (props) => {
                    render={() => <Products
                        foodsList={foodCost}
                        handleSave={handleSave}/>}/>
+            <Route path='/formtest'
+                   render={() => <FormTest/>}/>
         </div>
     );
 }

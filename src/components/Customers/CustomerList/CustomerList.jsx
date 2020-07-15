@@ -29,7 +29,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {useDispatch, useSelector} from "react-redux";
 import {ReNaME} from "../../../redux/modalReducer";
 import {bool} from "prop-types";
-import {requiredField} from './../../../utils/validators/validators';
+import {required, maxLengtCreator} from './../../../utils/validators/validators';
 
 const Child = ({match}) => {
     return <div>
@@ -65,6 +65,8 @@ const CustomerList = (props) => {
     const dataList = useSelector(state => state.windowModal.itemsList);
     const dispatch = useDispatch();
     const [buttonRename, setButtonRename] = useState(true);
+    const [buttonSave, setButtonSave] = useState(true);
+    const [error, setError] = useState(false);
 
 
     //useEffect(()=>{console.log(name)}, [name])
@@ -78,6 +80,7 @@ const CustomerList = (props) => {
         setPrice(currentUser.price);
         setNumber(currentUser.number);
         setButtonRename(true);
+        validate();
     };
 
     const handleClose = () => {
@@ -87,15 +90,23 @@ const CustomerList = (props) => {
 
     let validate = () => {
         if (name === " ") {
-            setNameError("Ошибка")
+            setError(true);
+            //setNameError("Enter name");
         }
-
         if (price === " ") {
-            setPriceError("Ошибка")
+            setError(true)
         }
-
         if (number === " ") {
-            setNumberError("Ошибка")
+            setError(true)
+        }
+        if (name !== " "){
+            setError(false)
+        }
+        if (price !== " "){
+            setError(false)
+        }
+        if (number !== " "){
+            setError(false)
         }
     }
 
@@ -139,10 +150,11 @@ const CustomerList = (props) => {
                 }
             })
         }
-        let isValid = validate();
-        if(isValid){
-
-        }
+        validate();
+        /*if (isValid){
+            setOpen(false)
+        }*/
+        setOpen(false)
     }
 
     //useEffect(()=>{console.log(id)}, [id])
@@ -159,13 +171,14 @@ const CustomerList = (props) => {
 
     let windiwModalAdd = () => {
         setButtonRename(false);
+        //setButtonSave(false);
         setOpen(true);
         setName(' ');
         setPrice(' ');
         setNumber(' ');
-        setButtonRename(false);
         setCurrentUser(null);
         setId(null);
+        validate();
     }
 
     const handleChangeName = (event) => {
@@ -212,18 +225,17 @@ const CustomerList = (props) => {
                             <div className={classes.textForm}><span>Number:</span> {currentUser ? currentUser.number : ''}</div>*/}
                         <form className={classes.root} noValidate autoComplete="off">
                             <div className={classes.inputForm}>
-                                <FormControl variant="outlined">
+                                <FormControl error={error} variant="outlined">
                                     <InputLabel required={true} htmlFor="component-outlined">Name</InputLabel>
                                     <OutlinedInput id="component-outlined"
                                                    value={name}
-                                                   
                                                    onChange={handleChangeName}
                                                    label="Name"/>
-                                     <div style={{color: 'red'}}>{nameError}</div>
+                                                   <div style={{color: 'red'}}>{nameError}</div>
                                 </FormControl>
                             </div>
                             <div className={classes.inputForm}>
-                                <FormControl variant="outlined">
+                                <FormControl error={error} variant="outlined">
                                     <InputLabel required={true} htmlFor="component-outlined">Price</InputLabel>
                                     <OutlinedInput id="component-outlined"
                                                    value={price}
@@ -233,11 +245,10 @@ const CustomerList = (props) => {
                                 </FormControl>
                             </div>
                             <div className={classes.inputForm}>
-                                <FormControl variant="outlined">
+                                <FormControl error={error} variant="outlined">
                                     <InputLabel required={true} htmlFor="component-outlined">Number</InputLabel>
                                     <OutlinedInput id="component-outlined"
                                                    value={number}
-                                                   valueError={numberError}
                                                    onChange={handleChangeNumber}
                                                    label="Number"/>
                                                    <div style={{color: 'red'}}>{numberError}</div>
@@ -255,9 +266,16 @@ const CustomerList = (props) => {
                         </Button> :
                             null
                     }
-                    <Button autoFocus onClick={() => onDispatchSave(currentUser && currentUser.id)} color="primary">
-                        Save
-                    </Button>
+                    {
+                        buttonSave ?
+                        <Button autoFocus onClick={() => onDispatchSave(currentUser && currentUser.id)} color="primary">
+                            Save
+                        </Button>
+                            :
+                            <Button variant="contained" disabled>
+                                Save
+                            </Button>
+                    }
                     <Button autoFocus onClick={handleClose} color="primary">
                         Cancel
                     </Button>
