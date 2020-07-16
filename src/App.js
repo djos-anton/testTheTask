@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Customers from './components/Customers/Customers';
+import CustomersTest from './components/Customers/CustomersTest';
 import FormTest from './components/FormTest/FormTest';
 import CustomersParameters from './components/CustomersParameters/CustomersParameters';
 import Products from './components/Products/Products';
@@ -63,6 +64,8 @@ const App = (props) => {
                        handleSave={handleSave}/>}/>
             <Route path='/formtest'
                    render={() => <FormTest/>}/>
+            <Route path='/customersTest'
+                   render={() => <CustomersTest/>}/>
         </div>
     );
 }

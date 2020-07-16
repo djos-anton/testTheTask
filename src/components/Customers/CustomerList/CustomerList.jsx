@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomerList = (props) => {
+    //console.log(props);
     //debugger;
     //const {handleSave} = props;
 
