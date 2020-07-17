@@ -16,6 +16,7 @@ import {ReNaME} from "../../../redux/modalReducer";
 import {required, maxLengtCreator} from './../../../utils/validators/validators';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import {reduxForm, Field} from "redux-form";
 
 const Child = ({match}) => {
     return <div>
@@ -151,8 +152,8 @@ const CustomerListTest = (props) => {
                 <DialogContent dividers>
                     <Typography gutterBottom>
 
-
-                        <form className={classes.root} noValidate autoComplete="off">
+                        <ModalInputFormTest/>
+/*                        <form>
                             <div>
                                 <TextField
                                     label="Name"
@@ -182,35 +183,49 @@ const CustomerListTest = (props) => {
                                 Save
                             </Button>
 
-                        </form>
+
+                        </form>*/
                     </Typography>
                 </DialogContent>
                 <DialogActions>
+
                     {
                         buttonRename ?
-                        <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
-                                color="primary">
-                            Delete
-                        </Button> :
+                            <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
+                                    color="primary">
+                                Delete
+                            </Button> :
                             null
                     }
-
-
-
                     <Button autoFocus onClick={handleClose} color="primary">
                         Cancel
                     </Button>
+
                 </DialogActions>
             </Dialog>
+
+
         </div>
     );
 }
 
 const ModalInputFormTest = (props) => {
-              return {
+                    console.log(props.handleSubmit);
+    return (
+    <form onSubmit={props.handleSubmit}>
+        <div>
+            <Field component="TextField" variant="outlined" label="Name" name="name"/>
+        </div>
+        <div>
+            <Field component="TextField" variant="outlined" label="Price" name="price"/>
+        </div>
+        <div>
+            <Field component="TextField" variant="outlined" label="Number" name="number"/>
+        </div>
+        <div><button>Save</button></div>
+    </form>
 
-
-              }
+)
 }
 
 export default CustomerListTest;
