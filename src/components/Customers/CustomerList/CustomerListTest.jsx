@@ -50,6 +50,7 @@ const CustomerListTest = (props) => {
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
     const dispatch = useDispatch();
     const [buttonRename, setButtonRename] = useState(true);
+    const [errorValue, setErrorValue] = useState(false);
 
     //useEffect(()=>{console.log(name)}, [name])
 
@@ -60,6 +61,7 @@ const CustomerListTest = (props) => {
         setPrice(currentUser.price);
         setNumber(currentUser.number);
         setButtonRename(true);
+        setErrorValue(false);
     };
 
     const handleClose = () => {
@@ -111,6 +113,7 @@ const CustomerListTest = (props) => {
         setNumber(' ');
         setCurrentUser(null);
         setId(null);
+        setErrorValue(false);
     }
 
     const handleChangeName = (event) => {
@@ -121,6 +124,10 @@ const CustomerListTest = (props) => {
     };
     const handleChangeNumber = (event) => {
         setNumber(event.target.value);
+    };
+
+    const onClickSave=()=>{
+        onDispatchSave(currentUser && currentUser.id);
     };
 
     return (
@@ -151,44 +158,52 @@ const CustomerListTest = (props) => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-
-                        <ModalInputFormTest/>
-/*                        <form>
+                        <form>
                             <div>
                                 <TextField
-                                    label="Name"
+                                    required={true}
                                     value={name}
                                     onChange={handleChangeName}
                                     variant="outlined"
+                                    error={errorValue}
+                                    label='Name'
                                 />
                             </div>
                             <div>
                                 <TextField
-                                    label="Price"
+                                    required={true}
                                     value={price}
                                     onChange={handleChangePrice}
                                     variant="outlined"
+                                    error={errorValue}
+                                    label='Price'
                                 />
                             </div>
                             <div>
                                 <TextField
-                                    label="Number"
+                                    required={true}
                                     value={number}
                                     onChange={handleChangeNumber}
                                     variant="outlined"
+                                    error={errorValue}
+                                    label='Number'
+                                    autoFocus
                                 />
                             </div>
-
-                            <Button autoFocus onClick={() => onDispatchSave(currentUser && currentUser.id)} color="primary">
-                                Save
-                            </Button>
-
-
-                        </form>*/
+                        </form>
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-
+                    {
+                        name === ' ' || price === ' ' || number === ' ' ?
+                            <Button autoFocus onClick={() => setErrorValue(true)} color="primary">
+                                Save
+                            </Button>
+                            :
+                            <Button autoFocus onClick={onClickSave} color="primary">
+                                Save
+                            </Button>
+                    }
                     {
                         buttonRename ?
                             <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
@@ -207,25 +222,6 @@ const CustomerListTest = (props) => {
 
         </div>
     );
-}
-
-const ModalInputFormTest = (props) => {
-                    console.log(props.handleSubmit);
-    return (
-    <form onSubmit={props.handleSubmit}>
-        <div>
-            <Field component="TextField" variant="outlined" label="Name" name="name"/>
-        </div>
-        <div>
-            <Field component="TextField" variant="outlined" label="Price" name="price"/>
-        </div>
-        <div>
-            <Field component="TextField" variant="outlined" label="Number" name="number"/>
-        </div>
-        <div><button>Save</button></div>
-    </form>
-
-)
 }
 
 export default CustomerListTest;
