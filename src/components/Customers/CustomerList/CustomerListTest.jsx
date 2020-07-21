@@ -167,6 +167,8 @@ const CustomerListTest = (props) => {
                                     variant="outlined"
                                     error={errorValue}
                                     label='Name'
+                                    margin='normal'
+                                    helperText={name === ' ' ? 'Введите имя' : ' '}
                                 />
                             </div>
                             <div>
@@ -177,6 +179,8 @@ const CustomerListTest = (props) => {
                                     variant="outlined"
                                     error={errorValue}
                                     label='Price'
+                                    margin='normal'
+                                    helperText={name === ' '  ? 'Введите номер' : ' '}
                                 />
                             </div>
                             <div>
@@ -187,7 +191,8 @@ const CustomerListTest = (props) => {
                                     variant="outlined"
                                     error={errorValue}
                                     label='Number'
-                                    autoFocus
+                                    margin='normal'
+                                    helperText={name === ' ' ? 'Введите улицу' : ' '}
                                 />
                             </div>
                         </form>
