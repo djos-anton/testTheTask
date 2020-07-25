@@ -18,6 +18,13 @@ import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {reduxForm, Field} from "redux-form";
 
+
+const DEF_ERROR =  {
+    name:false,
+    price: false,
+    number: false,
+}
+
 const Child = ({match}) => {
     return <div>
         <h3>{match.params.id}</h3>
@@ -26,13 +33,26 @@ const Child = ({match}) => {
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '80%',
+        },
+    },
+}));
+
+/*
+const useStyles = makeStyles((theme) => ({
+    root: {
         '& > *': {
             margin: theme.spacing(1),
         },
     },
 }));
+*/
 
 const CustomerListTest = (props) => {
+
+const classes = useStyles();
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
@@ -40,18 +60,14 @@ const CustomerListTest = (props) => {
     }
     const [open, setOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
-    const [name, setName] = useState(' ');
-    const [nameError, setNameError] = useState(' ');
-    const [priceError, setPriceError] = useState(' ');
-    const [numberError, setNumberError] = useState(' ');
-    const [price, setPrice] = useState(' ');
-    const [number, setNumber] = useState(' ');
-    const [id, setId] = useState(' ');
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [number, setNumber] = useState('');
+    const [id, setId] = useState('');
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
     const dispatch = useDispatch();
     const [buttonRename, setButtonRename] = useState(true);
-    const [errorValue, setErrorValue] = useState(false);
-
+    const [errorValue, setErrorValue] = useState(DEF_ERROR);
     //useEffect(()=>{console.log(name)}, [name])
 
     const handleClickOpen = (currentUser) => {
@@ -61,7 +77,7 @@ const CustomerListTest = (props) => {
         setPrice(currentUser.price);
         setNumber(currentUser.number);
         setButtonRename(true);
-        setErrorValue(false);
+        setErrorValue(DEF_ERROR);
     };
 
     const handleClose = () => {
@@ -108,12 +124,12 @@ const CustomerListTest = (props) => {
     let windiwModalAdd = () => {
         setButtonRename(false);
         setOpen(true);
-        setName(' ');
-        setPrice(' ');
-        setNumber(' ');
+        setName('');
+        setPrice('');
+        setNumber('');
         setCurrentUser(null);
         setId(null);
-        setErrorValue(false);
+        setErrorValue(DEF_ERROR);
     }
 
     const handleChangeName = (event) => {
@@ -125,6 +141,18 @@ const CustomerListTest = (props) => {
     const handleChangeNumber = (event) => {
         setNumber(event.target.value);
     };
+
+    const f =() => {
+        if(!name || !price || !number) {
+            setErrorValue({
+                name: !name,
+                price: !price,
+                number: !number,
+            })
+        } else {
+            onClickSave()
+        }
+    }
 
     const onClickSave=()=>{
         onDispatchSave(currentUser && currentUser.id);
@@ -165,10 +193,10 @@ const CustomerListTest = (props) => {
                                     value={name}
                                     onChange={handleChangeName}
                                     variant="outlined"
-                                    error={errorValue}
+                                    error={errorValue.name}
                                     label='Name'
                                     margin='normal'
-                                    helperText={name === ' ' ? 'Введите имя' : ' '}
+                                    helperText={!name ? 'Введите имя' : ''}
                                 />
                             </div>
                             <div>
@@ -177,10 +205,10 @@ const CustomerListTest = (props) => {
                                     value={price}
                                     onChange={handleChangePrice}
                                     variant="outlined"
-                                    error={errorValue}
+                                    error={errorValue.price}
                                     label='Price'
                                     margin='normal'
-                                    helperText={name === ' '  ? 'Введите номер' : ' '}
+                                    helperText={!price  ? 'Введите номер' : ''}
                                 />
                             </div>
                             <div>
@@ -189,26 +217,23 @@ const CustomerListTest = (props) => {
                                     value={number}
                                     onChange={handleChangeNumber}
                                     variant="outlined"
-                                    error={errorValue}
+                                    error={errorValue.number}
                                     label='Number'
                                     margin='normal'
-                                    helperText={name === ' ' ? 'Введите улицу' : ' '}
+                                    helperText={!number ? 'Введите улицу' : ''}
                                 />
                             </div>
                         </form>
                     </Typography>
                 </DialogContent>
                 <DialogActions>
+
                     {
-                        name === ' ' || price === ' ' || number === ' ' ?
-                            <Button autoFocus onClick={() => setErrorValue(true)} color="primary">
-                                Save
-                            </Button>
-                            :
-                            <Button autoFocus onClick={onClickSave} color="primary">
-                                Save
-                            </Button>
+                        <Button autoFocus onClick={f} color="primary">
+                            Save
+                        </Button>
                     }
+
                     {
                         buttonRename ?
                             <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}

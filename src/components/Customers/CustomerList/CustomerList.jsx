@@ -175,9 +175,9 @@ const CustomerList = (props) => {
         setButtonRename(false);
         //setButtonSave(false);
         setOpen(true);
-        setName(' ');
-        setPrice(' ');
-        setNumber(' ');
+        setName('');
+        setPrice('');
+        setNumber('');
         setCurrentUser(null);
         setId(null);
         validate();
