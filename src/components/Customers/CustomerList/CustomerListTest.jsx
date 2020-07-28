@@ -19,7 +19,7 @@ import TextField from '@material-ui/core/TextField';
 import {reduxForm, Field} from "redux-form";
 
 
-const DEF_ERROR =  {
+const DEFeRROR =  {
     name:false,
     price: false,
     number: false,
@@ -67,7 +67,7 @@ const classes = useStyles();
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
     const dispatch = useDispatch();
     const [buttonRename, setButtonRename] = useState(true);
-    const [errorValue, setErrorValue] = useState(DEF_ERROR);
+    const [errorValue, setErrorValue] = useState(DEFeRROR);
     //useEffect(()=>{console.log(name)}, [name])
 
     const handleClickOpen = (currentUser) => {
@@ -77,7 +77,7 @@ const classes = useStyles();
         setPrice(currentUser.price);
         setNumber(currentUser.number);
         setButtonRename(true);
-        setErrorValue(DEF_ERROR);
+        setErrorValue(DEFeRROR);
     };
 
     const handleClose = () => {
@@ -129,7 +129,7 @@ const classes = useStyles();
         setNumber('');
         setCurrentUser(null);
         setId(null);
-        setErrorValue(DEF_ERROR);
+        setErrorValue(DEFeRROR);
     }
 
     const handleChangeName = (event) => {
@@ -143,6 +143,7 @@ const classes = useStyles();
     };
 
     const f =() => {
+        debugger;
         if(!name || !price || !number) {
             setErrorValue({
                 name: !name,

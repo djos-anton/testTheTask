@@ -39,34 +39,13 @@ import Button from '@material-ui/core/Button';
 import {useDispatch, useSelector} from "react-redux";
 
 const CustomersTest = (props) => {
-    //const classes = useStyles();
-
-    //const {handleSave} = props;
-
-    /*    const [isOpen, setIsOpen]  = useState(false);
-        const fn = () => setIsOpen(!isOpen);*/
-    //const data = useSelector(state => state.windowModal.itemsList[0].name);
-    //console.log(data)
     return (
         <div className={classes.users}>
             <h1>Customer list Test111</h1>
-
-            {/*<div className={classes.container}>
-                <Button onClick={fn}/>
-            </div>*/}
             <CustomerListTest items={props.items}
 
                           usersEdit={props.usersEdit}
-                //handleSave={data => handleSave(data)}
-                //rename={props.rename}
-                //handleChangeName={props.handleChangeName}
-                //handleChangePrice={props.handleChangePrice}
-                //handleChangeNumber={props.handleChangeNumber}
             />
-
-            {/*<Modal isOpen={isOpen}
-                   onSubmit ={fn}
-                   onCancel={fn}/>*/}
         </div>
     );
 }
