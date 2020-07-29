@@ -143,7 +143,6 @@ const classes = useStyles();
     };
 
     const f =() => {
-        debugger;
         if(!name || !price || !number) {
             setErrorValue({
                 name: !name,

@@ -8,24 +8,11 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {useDispatch, useSelector} from "react-redux";
-//import {ReNaME} from "../../../redux/modalReducer";
-
-
-/*const Child = ({match}) => {
-    return <div>
-        <h3>{match.params.id}</h3>
-    </div>
-}*/
+import TextField from "@material-ui/core/TextField/TextField";
 
 const CustomerList = (props) => {
 
-/*    const usersEdit = (id) => {
-        let customersUrl = '/customers/' + id;
-    }*/
     const [open, setOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [name, setName] = useState(' ');
@@ -35,8 +22,11 @@ const CustomerList = (props) => {
     const dataList = useSelector(state => state.windowModal.itemsList);
     const dispatch = useDispatch();
     const [buttonRename, setButtonRename] = useState(true);
-    const [buttonSave, setButtonSave] = useState(true);
-    const [error, setError] = useState(false);
+    const [errorValue, setErrorValue] = useState({
+        name: false,
+        price: false,
+        number: false,
+    });
 
     const handleClickOpen = (currentUser) => {
         setCurrentUser(currentUser);
@@ -45,6 +35,11 @@ const CustomerList = (props) => {
         setPrice(currentUser.price);
         setNumber(currentUser.number);
         setButtonRename(true);
+        setErrorValue({
+            name: false,
+            price: false,
+            number: false,
+        });
     };
 
     const handleClose = () => {
@@ -52,7 +47,7 @@ const CustomerList = (props) => {
     };
 
     let onDispatchSave = (id) => {
-        if (id===null) {
+        if (id === null) {
             dispatch({
                 type: 'ADD',
                 data: {
@@ -94,6 +89,11 @@ const CustomerList = (props) => {
         setNumber('');
         setCurrentUser(null);
         setId(null);
+        setErrorValue({
+            name: false,
+            price: false,
+            number: false,
+        });
     }
 
     const handleChangeName = (event) => {
@@ -114,8 +114,7 @@ const CustomerList = (props) => {
                 {dataList.map((item, key) => {
                     return (
                         <div key={item.id}
-                             className={classes.choice}
-                             /*onClick={() => usersEdit(item.id)}*/>
+                             className={classes.choice}>
                             <Link onClick={() => handleClickOpen(item)}>
                                 <ListItemText primary={`${item.name} ${item.price}`}
                                               secondary={item.number}/>
@@ -134,33 +133,42 @@ const CustomerList = (props) => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-                        <form className={classes.root} noValidate autoComplete="off">
-                            <div className={classes.inputForm}>
-                                <FormControl error={error} variant="outlined">
-                                    <InputLabel required={true} htmlFor="component-outlined">Name</InputLabel>
-                                    <OutlinedInput id="component-outlined"
-                                                   value={name}
-                                                   onChange={handleChangeName}
-                                                   label="Name"/>
-                                </FormControl>
+                        <form>
+                            <div>
+                                <TextField
+                                    required={true}
+                                    value={name}
+                                    onChange={handleChangeName}
+                                    variant="outlined"
+                                    error={errorValue.name}
+                                    label='Name'
+                                    margin='normal'
+                                    helperText={!name ? 'Введите имя' : ''}
+                                />
                             </div>
-                            <div className={classes.inputForm}>
-                                <FormControl error={error} variant="outlined">
-                                    <InputLabel required={true} htmlFor="component-outlined">Price</InputLabel>
-                                    <OutlinedInput id="component-outlined"
-                                                   value={price}
-                                                   onChange={handleChangePrice}
-                                                   label="Price"/>
-                                </FormControl>
+                            <div>
+                                <TextField
+                                    required={true}
+                                    value={price}
+                                    onChange={handleChangePrice}
+                                    variant="outlined"
+                                    error={errorValue.price}
+                                    label='Price'
+                                    margin='normal'
+                                    helperText={!price ? 'Введите номер' : ''}
+                                />
                             </div>
-                            <div className={classes.inputForm}>
-                                <FormControl error={error} variant="outlined">
-                                    <InputLabel required={true} htmlFor="component-outlined">Number</InputLabel>
-                                    <OutlinedInput id="component-outlined"
-                                                   value={number}
-                                                   onChange={handleChangeNumber}
-                                                   label="Number"/>
-                                </FormControl>
+                            <div>
+                                <TextField
+                                    required={true}
+                                    value={number}
+                                    onChange={handleChangeNumber}
+                                    variant="outlined"
+                                    error={errorValue.number}
+                                    label='Number'
+                                    margin='normal'
+                                    helperText={!number ? 'Введите улицу' : ''}
+                                />
                             </div>
                         </form>
                     </Typography>
@@ -168,21 +176,25 @@ const CustomerList = (props) => {
                 <DialogActions>
                     {
                         buttonRename ?
-                        <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
-                                color="primary">
-                            Delete
-                        </Button> :
+                            <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
+                                    color="primary">
+                                Delete
+                            </Button> :
                             null
                     }
                     {
-                        buttonSave ?
-                        <Button autoFocus onClick={() => onDispatchSave(currentUser && currentUser.id)} color="primary">
-                            Save
-                        </Button>
-                            :
-                            <Button variant="contained" disabled>
+                        !name || !price || !number ?
+                            <Button onClick={() => setErrorValue({name: !name, price: !price, number: !number})}>
                                 Save
                             </Button>
+                            :
+
+                            <Button autoFocus onClick={() => onDispatchSave(currentUser && currentUser.id)}
+                                    color="primary">
+                                Save
+                            </Button>
+
+
                     }
                     <Button autoFocus onClick={handleClose} color="primary">
                         Cancel
