@@ -12,18 +12,21 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 const ProductsList = (props) => {
-   ///debugger;
-    const {handleSave} = props;
+
+    //const {handleSave} = props;
 
     const [open, setOpen] = useState(false);
-    const [food, setFood] = useState(' ');
-    const [cost, setCost] = useState(' ');
+    const [food, setFood] = useState('');
+    const [cost, setCost] = useState('');
     const [currentProduct, setCurrentProduct] = useState({});
     const dispatch = useDispatch();
+    const foodDataList = useSelector(state => state.windowFood.foodReducer);
+    console.log(props)
+
 
     /*useEffect( () => {
-        console.log(props)
-    }, [props])*/
+        console.log(state.windowFood.foodReducer)
+    }, [state.windowFood.foodReducer])*/
 
 
     const handleClickOpen = (currentProduct) => {
@@ -48,11 +51,10 @@ const ProductsList = (props) => {
            food,
            cost
         }
-        handleSave(data);
        setOpen(false);
     }
 
-    /*let onDispatchSave = (id) => {
+    let onDispatchSave = (id) => {
         dispatch({ type: 'FOOD_EDIT',
             data:{
                 id,
@@ -60,8 +62,8 @@ const ProductsList = (props) => {
                 cost
             }})
         setOpen(false);
-    }*/
-
+    }
+    debugger;
     return (
             <div className={classes.item}>
                 <ul>

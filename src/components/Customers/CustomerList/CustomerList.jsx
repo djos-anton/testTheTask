@@ -105,7 +105,7 @@ const CustomerList = (props) => {
     const handleChangeNumber = (event) => {
         setNumber(event.target.value);
     };
-
+//debugger;
     return (
         <div className={classes.item}>
             <Button variant="outlined" color="primary" onClick={() => windiwModalAdd()}>Add</Button>
