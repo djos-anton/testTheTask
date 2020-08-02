@@ -10,24 +10,19 @@ import {makeStyles} from "@material-ui/core/styles/makeStyles";
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import TextField from '@material-ui/core/TextField';
 
 const ProductsList = (props) => {
-
-    //const {handleSave} = props;
 
     const [open, setOpen] = useState(false);
     const [food, setFood] = useState('');
     const [cost, setCost] = useState('');
     const [currentProduct, setCurrentProduct] = useState({});
     const dispatch = useDispatch();
-    const foodDataList = useSelector(state => state.windowFood.foodReducer);
-    console.log(props)
-
 
     /*useEffect( () => {
         console.log(state.windowFood.foodReducer)
     }, [state.windowFood.foodReducer])*/
-
 
     const handleClickOpen = (currentProduct) => {
         setCurrentProduct(currentProduct);
@@ -55,7 +50,7 @@ const ProductsList = (props) => {
     }
 
     let onDispatchSave = (id) => {
-        dispatch({ type: 'FOOD_EDIT',
+        dispatch({ type: 'SAVE',
             data:{
                 id,
                 food,
@@ -63,7 +58,7 @@ const ProductsList = (props) => {
             }})
         setOpen(false);
     }
-    debugger;
+    //debugger;
     return (
             <div className={classes.item}>
                 <ul>
@@ -83,26 +78,24 @@ const ProductsList = (props) => {
                     <DialogContent dividers>
                         <Typography gutterBottom>
                             <form className={classes.root} noValidate autoComplete="off">
-                                <div className={classes.inptFrm}>
-                                <FormControl variant="outlined">
-                                    <InputLabel htmlFor="component-outlined">Food</InputLabel>
-                                    <OutlinedInput
-                                        id="component-outlined"
+                                <div>
+                                    <TextField
+                                        label="Outlined"
                                         value={food}
                                         onChange={handleChangeFood}
-                                        label="Name" />
-                                </FormControl>
-            </div>
-            <div>
-                                <FormControl variant="outlined">
-                                    <InputLabel htmlFor="component-outlined">Cost</InputLabel>
-                                    <OutlinedInput
-                                        id="component-outlined"
+                                        label="Food"
+                                        margin='normal'
+                                        variant="outlined" />
+                                </div>
+                                <div>
+                                    <TextField
+                                        label="Outlined"
                                         value={cost}
                                         onChange={handleChangeCost}
-                                        label="Name" />
-                                </FormControl>
-            </div>
+                                        label="Cost"
+                                        margin='normal'
+                                        variant="outlined" />
+                                </div>
                             </form>
                         </Typography>
                     </DialogContent>
@@ -113,7 +106,7 @@ const ProductsList = (props) => {
                         {/*<Button autoFocus onClick={() => onDispatchSave(props.product.id)} color="primary">
                         Save
                         </Button>*/}
-                        <Button autoFocus onClick={() => save(props.product.id)} color="primary">
+                        <Button autoFocus onClick={() => console.log('dispatchSave')} color="primary">
                             Save
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">

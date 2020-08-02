@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import TextField from "@material-ui/core/TextField/TextField";
 
 const CustomerList = (props) => {
-
+//debugger;
     const [open, setOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [name, setName] = useState(' ');

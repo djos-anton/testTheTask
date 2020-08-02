@@ -60,8 +60,8 @@ const App = (props) => {
                    />}/>
             <Route path='/products'
                    render={() => <Products
-                       /*foodsList={foodCost}
-                       handleSave={handleSave}*//>}/>
+                       //foodsList={foodCost}
+                       /*handleSave={handleSave}*//>}/>
             <Route path='/customersTest'
                    render={() => <CustomersTest/>}/>
         </div>

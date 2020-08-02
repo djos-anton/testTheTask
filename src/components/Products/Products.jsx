@@ -3,31 +3,34 @@ import PropTypes from 'prop-types';
 import classes from './Products.module.css';
 import ProductsList from './ProductsList/ProductsList';
 import {useSelector} from "react-redux";
-import foodReducer from "../../redux/foodReducer";
 
-
-
-
+//console.log(state.windowFood);
 
 const Products = (props) => {
-    debugger;
+
+    const newState=useSelector(state=>state.windowFood)
+    //debugger;
+    //const foodDataList = useSelector(state => state);
+
     //const {handleSave} = props;
     return (
         <div className={classes.grocery}>
             <h1>Products list</h1>
-            {props.foodDataList.map((product, key) => {
+            {newState.foodDataList.map((product, key) => {
+                console.log(product);
                 return <ProductsList
                     product={product}
                     key={product.id}
-                    /*handleSave={data => handleSave(data)}*//>
+                    />
             })}
         </div>
     );
+
 }
 
-Products.propTypes = {
-    foodsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+/*Products.propTypes = {
+    foodDataList: PropTypes.arrayOf(PropTypes.object).isRequired,
     onCorrection: PropTypes.func.isRequired
-}
+}*/
 
 export default Products;
