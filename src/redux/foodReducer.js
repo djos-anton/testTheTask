@@ -12,13 +12,25 @@ let initialState = {
 
 let foodReducer = (state = initialState, action) => {
     const {data} = action;
-    //console.log(data)
+    console.log(action)
     switch (action.type) {
         case 'SAVE' : {
             let foodDataListCopy = [...state.foodDataList];
             for (let key in foodDataListCopy) {
                 if (foodDataListCopy[key].id === action.data.id) {
                     foodDataListCopy[key] = action.data;
+                }
+            }
+            return {
+                ...state,
+                foodDataList: foodDataListCopy
+            }
+        }
+        case 'DELETE' : {
+            let foodDataListCopy = [...state.foodDataList];
+            for (let key in foodDataListCopy) {
+                if (foodDataListCopy[key].id === action.data.id) {
+                    foodDataListCopy.splice(key, 1);
                 }
             }
             return {

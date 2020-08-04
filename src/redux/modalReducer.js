@@ -14,6 +14,7 @@ let initialState = {
 let modalReducer = (state = initialState, action) => {
     //debugger;
     const {data} = action;
+console.log(action.type);
     switch (action.type) {
         case 'ADD' : {
             let itemsListCopy = [...state.itemsList];

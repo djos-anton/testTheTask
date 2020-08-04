@@ -11,9 +11,11 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import TextField from '@material-ui/core/TextField';
+import Fragment from 'react';
+
 
 const ProductsList = (props) => {
-
+//debugger;
     const [open, setOpen] = useState(false);
     const [food, setFood] = useState('');
     const [cost, setCost] = useState('');
@@ -40,14 +42,14 @@ const ProductsList = (props) => {
         setCost(event.target.value);
     };
 
-    let save = (id) => {
+    /*let save = (id) => {
        const data={
             id,
            food,
            cost
         }
        setOpen(false);
-    }
+    }*/
 
     let onDispatchSave = (id) => {
         dispatch({ type: 'SAVE',
@@ -58,9 +60,17 @@ const ProductsList = (props) => {
             }})
         setOpen(false);
     }
+    let onDispatchDelete = (id) => {
+        dispatch({ type: 'DELETE',
+            data: {
+                id
+            }
+        })
+    }
+
     //debugger;
     return (
-            <div className={classes.item}>
+<div className={classes.item}>
                 <ul>
                     <li  onClick={() => handleClickOpen(props.product)}>
 
@@ -100,13 +110,13 @@ const ProductsList = (props) => {
                         </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button autoFocus onClick={handleClose} color="primary">
+                        <Button autoFocus onClick={()=>onDispatchDelete(currentProduct.id)} color="primary">
                             Delete
                         </Button>
                         {/*<Button autoFocus onClick={() => onDispatchSave(props.product.id)} color="primary">
                         Save
                         </Button>*/}
-                        <Button autoFocus onClick={() => console.log('dispatchSave')} color="primary">
+                        <Button autoFocus onClick={() => onDispatchSave(currentProduct.id)} color="primary">
                             Save
                         </Button>
                         <Button autoFocus onClick={handleClose} color="primary">
