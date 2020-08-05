@@ -26,7 +26,7 @@ const ProductsList = (props) => {
         console.log(state.windowFood.foodReducer)
     }, [state.windowFood.foodReducer])*/
 
-    const handleClickOpen = (currentProduct) => {
+    export let handleClickOpen = (currentProduct) => {
         setCurrentProduct(currentProduct);
         setOpen(true);
         setFood(currentProduct.food);
