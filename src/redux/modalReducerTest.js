@@ -1,5 +1,5 @@
-//export const ReNaME = 'RENAME';
 import React, {useEffect} from "react";
+import {TEST_ADD, TEST_DELETE, TEST_SAVE} from "./action";
 
 
 let initialState = {
@@ -15,7 +15,7 @@ let modalReducerTest = (state = initialState, action) => {
     //debugger;
     const {data} = action;
     switch (action.type) {
-        case 'ADDTEST' : {
+        case TEST_ADD : {
             let itemsListCopy = [...state.itemsListTest];
             //for (let key in itemsListCopy) {
                  //if (action.data.id === null && action.data.name != null) {
@@ -42,7 +42,7 @@ let modalReducerTest = (state = initialState, action) => {
                 itemsListTest: itemsListCopy
             }
         }
-        case 'SAVETEST' : {
+        case TEST_SAVE : {
             let itemsListCopy = [...state.itemsListTest];
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
@@ -54,7 +54,7 @@ let modalReducerTest = (state = initialState, action) => {
                 itemsListTest: itemsListCopy
             }
         }
-        case 'DELETETEST' : {
+        case TEST_DELETE : {
             let itemsListCopy = [...state.itemsListTest];
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {

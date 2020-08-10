@@ -1,5 +1,6 @@
 //export const ReNaME = 'RENAME';
 import React, {useEffect} from "react";
+import {CUSTOMERS_ADD, CUSTOMERS_DELETE, CUSTOMERS_SAVE} from "./action";
 
 
 let initialState = {
@@ -11,12 +12,12 @@ let initialState = {
         {id: 5, name: "Kriatina Pars", price: "(777 Vein St, Sontana EW 78944)", number: "555-325-5864"}
     ]
 }
-let modalReducer = (state = initialState, action) => {
+let customersReducer = (state = initialState, action) => {
     //debugger;
     const {data} = action;
-console.log(action.type);
+//console.log(action.type);
     switch (action.type) {
-        case 'ADD' : {
+        case CUSTOMERS_ADD : {
             let itemsListCopy = [...state.itemsList];
             //for (let key in itemsListCopy) {
                  //if (action.data.id === null && action.data.name != null) {
@@ -43,7 +44,7 @@ console.log(action.type);
                 itemsList: itemsListCopy
             }
         }
-        case 'SAVE' : {
+        case CUSTOMERS_SAVE : {
             let itemsListCopy = [...state.itemsList];
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
@@ -55,7 +56,7 @@ console.log(action.type);
                 itemsList: itemsListCopy
             }
         }
-        case 'DELETE' : {
+        case CUSTOMERS_DELETE : {
             let itemsListCopy = [...state.itemsList];
             for (let key in itemsListCopy) {
                 if (itemsListCopy[key].id === action.data.id) {
@@ -72,4 +73,4 @@ console.log(action.type);
     }
 
 }
-export default modalReducer;
+export default customersReducer;

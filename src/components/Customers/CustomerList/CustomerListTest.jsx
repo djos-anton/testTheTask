@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import classes from "./CustomerList.module.css";
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
@@ -8,16 +7,12 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {useDispatch, useSelector} from "react-redux";
-import {ReNaME} from "../../../redux/modalReducer";
 import {required, maxLengtCreator} from './../../../utils/validators/validators';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import {reduxForm, Field} from "redux-form";
-
+import {TEST_ADD, TEST_DELETE, TEST_SAVE} from "../../../redux/action";
+import Dialogs from './../../Dialogs/Dialogs';
 
 const DEFeRROR =  {
     name:false,
@@ -40,17 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-/*
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-}));
-*/
-
 const CustomerListTest = (props) => {
+
 
 const classes = useStyles();
 
@@ -87,7 +73,7 @@ const classes = useStyles();
     let onDispatchSave = (id) => {
         if (id===null) {
             dispatch({
-                type: 'ADDTEST',
+                type: TEST_ADD,
                 data: {
                     id,
                     name,
@@ -97,7 +83,7 @@ const classes = useStyles();
             })
         } else {
             dispatch({
-                type: 'SAVETEST',
+                type: TEST_SAVE,
                 data: {
                     id,
                     name,
@@ -113,7 +99,7 @@ const classes = useStyles();
 
     let onDispatchDelete = (id) => {
         dispatch({
-                type: 'DELETETEST',
+                type: TEST_DELETE,
                 data: {
                     id
                 }
@@ -177,7 +163,13 @@ const classes = useStyles();
                     )
                 })}
             </List>
-            <Dialog onClose={handleClose}
+            <Dialogs onClose={handleClose}
+                     open={open}
+                     />
+{/*            useEffect( () => {
+            console.log(open)
+        }, [open])*/}
+          {/* <Dialog onClose={handleClose}
                     aria-labelledby="customized-dialog-title"
                     open={open}
             >
@@ -236,7 +228,7 @@ const classes = useStyles();
 
                     {
                         buttonRename ?
-                            <Button id={classes.a1} autoFocus onClick={() => onDispatchDelete(currentUser.id)}
+                            <Button autoFocus onClick={() => onDispatchDelete(currentUser.id)}
                                     color="primary">
                                 Delete
                             </Button> :
@@ -247,7 +239,7 @@ const classes = useStyles();
                     </Button>
 
                 </DialogActions>
-            </Dialog>
+            </Dialog>*/}
 
 
         </div>

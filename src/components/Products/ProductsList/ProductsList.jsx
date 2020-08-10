@@ -7,15 +7,11 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from "@material-ui/core/styles/makeStyles";
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import TextField from '@material-ui/core/TextField';
-import Fragment from 'react';
-
+import {PRODUCTS_DELETE, PRODUCTS_SAVE} from "../../../redux/action";
 
 const ProductsList = (props) => {
-//debugger;
+
     const [open, setOpen] = useState(false);
     const [food, setFood] = useState('');
     const [cost, setCost] = useState('');
@@ -26,7 +22,7 @@ const ProductsList = (props) => {
         console.log(state.windowFood.foodReducer)
     }, [state.windowFood.foodReducer])*/
 
-    export let handleClickOpen = (currentProduct) => {
+    const handleClickOpen = (currentProduct) => {
         setCurrentProduct(currentProduct);
         setOpen(true);
         setFood(currentProduct.food);
@@ -42,17 +38,8 @@ const ProductsList = (props) => {
         setCost(event.target.value);
     };
 
-    /*let save = (id) => {
-       const data={
-            id,
-           food,
-           cost
-        }
-       setOpen(false);
-    }*/
-
     let onDispatchSave = (id) => {
-        dispatch({ type: 'SAVE',
+        dispatch({ type: PRODUCTS_SAVE,
             data:{
                 id,
                 food,
@@ -61,7 +48,7 @@ const ProductsList = (props) => {
         setOpen(false);
     }
     let onDispatchDelete = (id) => {
-        dispatch({ type: 'DELETE',
+        dispatch({ type: PRODUCTS_DELETE,
             data: {
                 id
             }
@@ -113,9 +100,6 @@ const ProductsList = (props) => {
                         <Button autoFocus onClick={()=>onDispatchDelete(currentProduct.id)} color="primary">
                             Delete
                         </Button>
-                        {/*<Button autoFocus onClick={() => onDispatchSave(props.product.id)} color="primary">
-                        Save
-                        </Button>*/}
                         <Button autoFocus onClick={() => onDispatchSave(currentProduct.id)} color="primary">
                             Save
                         </Button>

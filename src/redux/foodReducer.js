@@ -1,4 +1,5 @@
 import React from "react";
+import {PRODUCTS_DELETE, PRODUCTS_SAVE} from "./action";
 
 let initialState = {
     foodDataList: [
@@ -12,9 +13,9 @@ let initialState = {
 
 let foodReducer = (state = initialState, action) => {
     const {data} = action;
-    console.log(action)
+    //console.log(action)
     switch (action.type) {
-        case 'SAVE' : {
+        case PRODUCTS_SAVE : {
             let foodDataListCopy = [...state.foodDataList];
             for (let key in foodDataListCopy) {
                 if (foodDataListCopy[key].id === action.data.id) {
@@ -26,7 +27,7 @@ let foodReducer = (state = initialState, action) => {
                 foodDataList: foodDataListCopy
             }
         }
-        case 'DELETE' : {
+        case PRODUCTS_DELETE : {
             let foodDataListCopy = [...state.foodDataList];
             for (let key in foodDataListCopy) {
                 if (foodDataListCopy[key].id === action.data.id) {

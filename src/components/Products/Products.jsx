@@ -4,24 +4,15 @@ import classes from './Products.module.css';
 import ProductsList from './ProductsList/ProductsList';
 import {useSelector} from "react-redux";
 import Button from "@material-ui/core/Button";
-import Add from './ProductsList/Add';
-import handleClickOpen from './ProductsList/ProductsList';
-
-//console.log(state.windowFood);
 
 const Products = (props) => {
 
-
-
     const newState=useSelector(state=>state.windowFood)
     //debugger;
-    //const foodDataList = useSelector(state => state);
-
-    //const {handleSave} = props;
     return (
         <div className={classes.grocery}>
             <h1>Products list</h1>
-            <Button autoFocus onClick={() => handleClickOpen(props.currentProduct)} color="primary">
+            <Button autoFocus color="primary">
                 Add
             </Button>
             {newState.foodDataList.map((product, key) => {
@@ -37,9 +28,9 @@ const Products = (props) => {
 
 }
 
-/*Products.propTypes = {
+Products.propTypes = {
     foodDataList: PropTypes.arrayOf(PropTypes.object).isRequired,
     onCorrection: PropTypes.func.isRequired
-}*/
+}
 
 export default Products;

@@ -9,7 +9,10 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
 import {useDispatch, useSelector} from "react-redux";
-import TextField from "@material-ui/core/TextField/TextField";
+import TextField from '@material-ui/core/TextField';
+import {CUSTOMERS_SAVE, CUSTOMERS_ADD, CUSTOMERS_DELETE} from "../../../redux/action";
+import Dialogs from './../../Dialogs/Dialogs';
+
 
 const CustomerList = (props) => {
 //debugger;
@@ -49,7 +52,7 @@ const CustomerList = (props) => {
     let onDispatchSave = (id) => {
         if (id === null) {
             dispatch({
-                type: 'ADD',
+                type: CUSTOMERS_ADD,
                 data: {
                     id,
                     name,
@@ -59,7 +62,7 @@ const CustomerList = (props) => {
             })
         } else {
             dispatch({
-                type: 'SAVE',
+                type: CUSTOMERS_SAVE,
                 data: {
                     id,
                     name,
@@ -73,7 +76,7 @@ const CustomerList = (props) => {
 
     let onDispatchDelete = (id) => {
         dispatch({
-                type: 'DELETE',
+                type: CUSTOMERS_DELETE,
                 data: {
                     id
                 }
@@ -124,7 +127,8 @@ const CustomerList = (props) => {
                     )
                 })}
             </List>
-            <Dialog onClose={handleClose}
+
+           <Dialog onClose={handleClose}
                     aria-labelledby="customized-dialog-title"
                     open={open}
             >
