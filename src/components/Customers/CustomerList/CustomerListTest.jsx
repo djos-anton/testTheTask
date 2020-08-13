@@ -165,6 +165,69 @@ const classes = useStyles();
             </List>
             <Dialogs onClose={handleClose}
                      open={open}
+                     ModalTitle={
+                         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                             Modal title
+                         </DialogTitle>
+                     }
+                     form={
+                         <form>
+                             <div>
+                                 <TextField
+                                     required={true}
+                                     value={name}
+                                     onChange={handleChangeName}
+                                     variant="outlined"
+                                     error={errorValue.name}
+                                     label='Name'
+                                     margin='normal'
+                                     helperText={!name ? 'Введите имя' : ''}
+                                 />
+                             </div>
+                             <div>
+                                 <TextField
+                                     required={true}
+                                     value={price}
+                                     onChange={handleChangePrice}
+                                     variant="outlined"
+                                     error={errorValue.price}
+                                     label='Price'
+                                     margin='normal'
+                                     helperText={!price  ? 'Введите номер' : ''}
+                                 />
+                             </div>
+                             <div>
+                                 <TextField
+                                     required={true}
+                                     value={number}
+                                     onChange={handleChangeNumber}
+                                     variant="outlined"
+                                     error={errorValue.number}
+                                     label='Number'
+                                     margin='normal'
+                                     helperText={!number ? 'Введите улицу' : ''}
+                                 />
+                             </div>
+                         </form>
+                     }
+                     buttonSave={
+                         <Button autoFocus onClick={f} color="primary">
+                             Save
+                         </Button>
+                     }
+                     buttonDelete={
+                         buttonRename ?
+                         <Button autoFocus onClick={() => onDispatchDelete(currentUser.id)}
+                                 color="primary">
+                             Delete
+                         </Button> :
+                         null
+                     }
+                     buttonCancel={
+                         <Button autoFocus onClick={handleClose} color="primary">
+                             Cancel
+                         </Button>
+                     }
                      />
 {/*            useEffect( () => {
             console.log(open)

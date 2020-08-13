@@ -7,7 +7,14 @@ import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 
 const Dialogs = (props) => {
-const {f, buttonRename, onDispatchDelete, currentUser, handleClose, open, setOpen} = props;
+const {
+    handleClose,
+    open,
+    form,
+    buttonSave,
+    buttonDelete,
+    buttonCancel,
+    ModalTitle} = props;
     useEffect( () => {
             console.log(open)
         }, [open]);
@@ -17,48 +24,50 @@ const {f, buttonRename, onDispatchDelete, currentUser, handleClose, open, setOpe
                 open={open}
         >
 
-            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                Modal title
-            </DialogTitle>
+            {ModalTitle}
             <DialogContent dividers>
                 <Typography gutterBottom>
-                    <form>
+                    {form}
+                    {/*<form>
                         <div>
                             <div>
                                 <TextField
-                                    required
-                                    value
-                                    onChange
-                                    variant
-                                    error
-                                    label
-                                    margin
-                                    helperText
+                                    // required={'required'}
+                                    // value={'value'}
+                                    // onChange={'onChange'}
+                                    // variant={'variant'}
+                                    // error={'error'}
+                                    // label={'label'}
+                                    // margin={'margin'}
+                                    // helperText={'helperText'}
                                 />
                             </div>
                         </div>
-                    </form>
+                    </form>*/}
                 </Typography>
             </DialogContent>
             <DialogActions>
-                {
+                {buttonSave}
+                {buttonDelete}
+                {buttonCancel}
+                {/*{
                     <Button autoFocus onClick={f} color="primary">
                         Save
                     </Button>
-                }
+                }*/}
 
-                {
+                {/*{
                     buttonRename ?
                         <Button autoFocus onClick={() => onDispatchDelete(currentUser.id)}
                                 color="primary">
                             Delete
                         </Button> :
                         null
-                }
+                }*/}
 
-                <Button autoFocus onClick={handleClose} color="primary">
+                {/*<Button autoFocus onClick={handleClose} color="primary">
                     Cancel
-                </Button>
+                </Button>*/}
             </DialogActions>
         </Dialog>
     );
