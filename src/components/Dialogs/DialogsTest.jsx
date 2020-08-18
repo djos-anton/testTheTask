@@ -1,65 +1,101 @@
-import React, {useState, useEffect} from "react";
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import Typography from '@material-ui/core/Typography';
-import {DialogTitle, DialogContent, DialogActions} from './CustomerDialog';
-import {useDispatch, useSelector} from "react-redux";
-import {required, maxLengtCreator} from './../../../utils/validators/validators';
-import {makeStyles} from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import {TEST_ADD, TEST_DELETE, TEST_SAVE, DEFAULT_ERROR} from "../../../redux/action";
-import Dialogs from './../../Dialogs/Dialogs';
-import DialogsTest from "../../Dialogs/DialogsTest";
+import React, {useState} from 'react';
+import {DialogActions, DialogContent, DialogTitle} from "../Customers/CustomerList/CustomerDialog";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField/TextField";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog/Dialog";
+import {DEFAULT_ERROR, TEST_ADD, TEST_DELETE, TEST_SAVE} from "../../redux/action";
+import {useDispatch} from "react-redux";
 
-/*const DEFERROR =  {
-    name:false,
-    price: false,
-    number: false,
-}*/
+const DialogsTest = (props) => {
 
-const Child = ({match}) => {
-    return <div>
-        <h3>{match.params.id}</h3>
-    </div>
-}
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [number, setNumber] = useState('');
+    const [errorValue, setErrorValue] = useState(DEFAULT_ERROR);
+    const [currentUser, setCurrentUser] = useState({});
+    const [buttonRename, setButtonRename] = useState(true);
+    const dispatch = useDispatch();
+    const [id, setId] = useState('');
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '80%',
-        },
-    },
-}));
 
-const CustomerListTest = (props) => {
+    const handleChangeName = (event) => {
+        setName(event.target.value);
+    };
+    const handleChangePrice = (event) => {
+        setPrice(event.target.value);
+    };
+    const handleChangeNumber = (event) => {
+        setNumber(event.target.value);
+    };
 
-    const {dialogsTest,
-           product,
-           windiwModalAdd,
-           handleClickOpen,
-           open,
-           handleClose
-    } = props;
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-const classes = useStyles();
+    const handleClickOpen = (currentUser) => {
+        setCurrentUser(currentUser);
+        setOpen(true);
+        setName(currentUser.name);
+        setPrice(currentUser.price);
+        setNumber(currentUser.number);
+        setButtonRename(true);
+        setErrorValue(DEFAULT_ERROR);
+    };
 
-    const usersEdit = (id) => {
-        let customersUrl = '/customers/' + id;
-
+    const f =() => {
+        if(!name || !price || !number) {
+            setErrorValue({
+                name: !name,
+                price: !price,
+                number: !number,
+            })
+        } else {
+            onClickSave()
+        }
     }
 
-    const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
+    const onClickSave=()=>{
+        onDispatchSave(currentUser && currentUser.id);
+    };
 
-    //useEffect(()=>{console.log(name)}, [name])
+    let onDispatchSave = (id) => {
+        if (id===null) {
+            dispatch({
+                type: TEST_ADD,
+                data: {
+                    id,
+                    name,
+                    price,
+                    number
+                }
+            })
+        } else {
+            dispatch({
+                type: TEST_SAVE,
+                data: {
+                    id,
+                    name,
+                    price,
+                    number
+                }
+            })
+        }
+        setOpen(false)
+    }
 
-    //useEffect(()=>{console.log(id)}, [id])
+    let onDispatchDelete = (id) => {
+        dispatch({
+                type: TEST_DELETE,
+                data: {
+                    id
+                }
+            },
+            setOpen(false))
+    }
 
-    /*let windiwModalAdd = () => {
+    let windiwModalAdd = () => {
         setButtonRename(false);
         setOpen(true);
         setName('');
@@ -68,37 +104,11 @@ const classes = useStyles();
         setCurrentUser(null);
         setId(null);
         setErrorValue(DEFAULT_ERROR);
-    }*/
-
-    console.log(props);
+    }
 
     return (
-        <div className={classes.item}>
-            <Button variant="outlined" color="primary" onClick={windiwModalAdd}>Add</Button>
-
-            <List className={classes.table}>
-                {dataListTest.map((item, key) => {
-                    return (
-                        <div key={item.id}
-                             className={classes.choice}
-                             onClick={() => usersEdit(item.id)}>
-                            <Link onClick={() => handleClickOpen(item)}>
-                                <ListItemText primary={`${item.name} ${item.price}`}
-                                              secondary={item.number}/>
-                            </Link>
-                            <Divider/>
-                        </div>
-                    )
-                })}
-            </List>
-            <DialogsTest open={open}
-                         onClose={handleClose}
-                         product={product}
-                         />
-{/*            useEffect( () => {
-            console.log(open)
-        }, [open])*/}
-          {/*<Dialog onClose={handleClose}
+        <div>
+            <Dialog onClose={handleClose}
                     aria-labelledby="customized-dialog-title"
                     open={open}
             >
@@ -107,6 +117,7 @@ const classes = useStyles();
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
+                        product={
                         <form>
                             <div>
                                 <TextField
@@ -129,7 +140,7 @@ const classes = useStyles();
                                     error={errorValue.price}
                                     label='Price'
                                     margin='normal'
-                                    helperText={!price  ? 'Введите номер' : ''}
+                                    helperText={!price ? 'Введите номер' : ''}
                                 />
                             </div>
                             <div>
@@ -145,6 +156,7 @@ const classes = useStyles();
                                 />
                             </div>
                         </form>
+                    }
                     </Typography>
                 </DialogContent>
                 <DialogActions>
@@ -168,9 +180,9 @@ const classes = useStyles();
                     </Button>
 
                 </DialogActions>
-            </Dialog>*/}
+            </Dialog>
         </div>
     );
 }
 
-export default CustomerListTest;
+export default DialogsTest;
