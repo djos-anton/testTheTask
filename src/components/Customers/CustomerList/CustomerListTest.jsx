@@ -37,15 +37,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomerListTest = (props) => {
-
-    const {dialogsTest,
-           product,
+    console.log(props);
+    const {product,
            windiwModalAdd,
            handleClickOpen,
            open,
            handleClose
     } = props;
-
+    //console.log(props);
 const classes = useStyles();
 
     const usersEdit = (id) => {
@@ -55,7 +54,8 @@ const classes = useStyles();
 
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
 
-    //useEffect(()=>{console.log(name)}, [name])
+
+    //useEffect(()=>{console.log(dataListTest)}, [dataListTest])
 
     //useEffect(()=>{console.log(id)}, [id])
 
@@ -70,11 +70,11 @@ const classes = useStyles();
         setErrorValue(DEFAULT_ERROR);
     }*/
 
-    console.log(props);
+
 
     return (
         <div className={classes.item}>
-            <Button variant="outlined" color="primary" onClick={windiwModalAdd}>Add</Button>
+            <Button variant="outlined" color="primary" onClick={() => windiwModalAdd()}>Add</Button>
 
             <List className={classes.table}>
                 {dataListTest.map((item, key) => {
@@ -94,6 +94,8 @@ const classes = useStyles();
             <DialogsTest open={open}
                          onClose={handleClose}
                          product={product}
+                         handleClickOpen={handleClickOpen}
+                         windiwModalAdd={windiwModalAdd}
                          />
 {/*            useEffect( () => {
             console.log(open)

@@ -8,7 +8,8 @@ import {DEFAULT_ERROR, TEST_ADD, TEST_DELETE, TEST_SAVE} from "../../redux/actio
 import {useDispatch} from "react-redux";
 
 const DialogsTest = (props) => {
-
+    debugger;
+    console.log(props);
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');

@@ -38,12 +38,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {useDispatch, useSelector} from "react-redux";
 
+
 const CustomersTest = (props) => {
+    console.log(props);
+    const {handleClickOpen, windiwModalAdd} = props;
+    //console.log(props);
     return (
         <div className={classes.users}>
             <h1>Customer list Test111</h1>
             <CustomerListTest items={props.items}
-
+                              handleClickOpen={handleClickOpen}
+                              windiwModalAdd={windiwModalAdd}
                           usersEdit={props.usersEdit}
             />
         </div>
