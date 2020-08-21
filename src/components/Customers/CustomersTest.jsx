@@ -47,8 +47,8 @@ const CustomersTest = (props) => {
         <div className={classes.users}>
             <h1>Customer list Test111</h1>
             <CustomerListTest items={props.items}
-                              handleClickOpen={handleClickOpen}
-                              windiwModalAdd={windiwModalAdd}
+                              //handleClickOpen={handleClickOpen}
+                              //windiwModalAdd={windiwModalAdd}
                           usersEdit={props.usersEdit}
             />
         </div>

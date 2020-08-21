@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux";
 
 const DialogsTest = (props) => {
     debugger;
+    const {person} = props;
     console.log(props);
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
@@ -35,7 +36,7 @@ const DialogsTest = (props) => {
         setOpen(false);
     };
 
-    const handleClickOpen = (currentUser) => {
+    const person = (currentUser) => {
         setCurrentUser(currentUser);
         setOpen(true);
         setName(currentUser.name);

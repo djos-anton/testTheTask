@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomerListTest = (props) => {
-    console.log(props);
+
+    //console.log(props.handleClickOpen);
     const {product,
            windiwModalAdd,
-           handleClickOpen,
            open,
            handleClose
     } = props;
@@ -53,7 +53,11 @@ const classes = useStyles();
     }
 
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
+    const [editPerson, setEditPerson] = useState(null);
 
+    const handleClickOpen = (item) => {
+        setEditPerson(item)
+    }
 
     //useEffect(()=>{console.log(dataListTest)}, [dataListTest])
 
@@ -94,7 +98,8 @@ const classes = useStyles();
             <DialogsTest open={open}
                          onClose={handleClose}
                          product={product}
-                         handleClickOpen={handleClickOpen}
+                         person={editPerson}
+                         //handleClickOpen={handleClickOpen}
                          windiwModalAdd={windiwModalAdd}
                          />
 {/*            useEffect( () => {
