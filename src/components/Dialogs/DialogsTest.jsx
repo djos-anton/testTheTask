@@ -8,19 +8,18 @@ import {DEFAULT_ERROR, TEST_ADD, TEST_DELETE, TEST_SAVE} from "../../redux/actio
 import {useDispatch} from "react-redux";
 
 const DialogsTest = (props) => {
-    debugger;
+    // debugger;
     const {person} = props;
     console.log(props);
-    const [open, setOpen] = useState(false);
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
+//    const [open, setOpen] = useState(!!props.open);
+    const [name, setName] = useState( props.person && props.person.name ? props.person.name : "");
+    const [price, setPrice] = useState(props.person && props.person.price ? props.person.price : "");
     const [number, setNumber] = useState('');
     const [errorValue, setErrorValue] = useState(DEFAULT_ERROR);
-    const [currentUser, setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState(props.person ? props.person : {});
     const [buttonRename, setButtonRename] = useState(true);
     const dispatch = useDispatch();
     const [id, setId] = useState('');
-
 
     const handleChangeName = (event) => {
         setName(event.target.value);
@@ -33,18 +32,41 @@ const DialogsTest = (props) => {
     };
 
     const handleClose = () => {
-        setOpen(false);
+        props.onClose();
     };
 
-    const person = (currentUser) => {
-        setCurrentUser(currentUser);
-        setOpen(true);
-        setName(currentUser.name);
-        setPrice(currentUser.price);
-        setNumber(currentUser.number);
-        setButtonRename(true);
-        setErrorValue(DEFAULT_ERROR);
-    };
+    const setPerson = (person) => {
+
+        if(!person) {
+            if(person !== currentUser )
+                setCurrentUser(person);
+
+            if(!!name )
+                setName("");
+
+            if(!!price )
+                setPrice("");
+
+            if( !!number )
+                setNumber("");
+
+            return;
+        }
+
+        if(person !== currentUser )
+            setCurrentUser(person);
+
+        if(person.name !== name)
+            setName(person.name);
+
+        if(person.price !== price)
+            setPrice(person.price);
+
+        if(person.number !== number)
+            setNumber(person.number);
+
+        };
+    setPerson(person);
 
     const f =() => {
         if(!name || !price || !number) {
@@ -84,7 +106,9 @@ const DialogsTest = (props) => {
                 }
             })
         }
-        setOpen(false)
+
+        handleClose();
+        // setOpen(false)
     }
 
     let onDispatchDelete = (id) => {
@@ -93,26 +117,30 @@ const DialogsTest = (props) => {
                 data: {
                     id
                 }
-            },
-            setOpen(false))
+            }
+            // ,
+//             setOpen(false)
+        )
+        handleClose();
     }
 
-    let windiwModalAdd = () => {
-        setButtonRename(false);
-        setOpen(true);
-        setName('');
-        setPrice('');
-        setNumber('');
-        setCurrentUser(null);
-        setId(null);
-        setErrorValue(DEFAULT_ERROR);
-    }
+    // let windiwModalAdd = () => {
+    //     setButtonRename(false);
+    //     setOpen(true);
+    //     setName('');
+    //     setPrice('');
+    //     setNumber('');
+    //     setCurrentUser(null);
+    //     setId(null);
+    //     setErrorValue(DEFAULT_ERROR);
+    // }
+
 
     return (
         <div>
             <Dialog onClose={handleClose}
                     aria-labelledby="customized-dialog-title"
-                    open={open}
+                    open={props.open}
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Modal title

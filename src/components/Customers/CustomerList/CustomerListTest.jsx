@@ -41,11 +41,10 @@ const CustomerListTest = (props) => {
     //console.log(props.handleClickOpen);
     const {product,
            windiwModalAdd,
-           open,
            handleClose
     } = props;
     //console.log(props);
-const classes = useStyles();
+    const classes = useStyles();
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
@@ -54,31 +53,20 @@ const classes = useStyles();
 
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
     const [editPerson, setEditPerson] = useState(null);
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = (item) => {
-        setEditPerson(item)
+        setEditPerson(item);
+        setOpen(true);
     }
 
-    //useEffect(()=>{console.log(dataListTest)}, [dataListTest])
-
-    //useEffect(()=>{console.log(id)}, [id])
-
-    /*let windiwModalAdd = () => {
-        setButtonRename(false);
-        setOpen(true);
-        setName('');
-        setPrice('');
-        setNumber('');
-        setCurrentUser(null);
-        setId(null);
-        setErrorValue(DEFAULT_ERROR);
-    }*/
-
-
+    const handleDialogClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div className={classes.item}>
-            <Button variant="outlined" color="primary" onClick={() => windiwModalAdd()}>Add</Button>
+            <Button variant="outlined" color="primary" onClick={() => handleClickOpen()}>Add</Button>
 
             <List className={classes.table}>
                 {dataListTest.map((item, key) => {
@@ -96,11 +84,11 @@ const classes = useStyles();
                 })}
             </List>
             <DialogsTest open={open}
-                         onClose={handleClose}
+                         onClose={handleDialogClose}
                          product={product}
                          person={editPerson}
-                         //handleClickOpen={handleClickOpen}
-                         windiwModalAdd={windiwModalAdd}
+                         handleClickOpen={handleClickOpen}
+//                         windiwModalAdd={windiwModalAdd}
                          />
 {/*            useEffect( () => {
             console.log(open)
