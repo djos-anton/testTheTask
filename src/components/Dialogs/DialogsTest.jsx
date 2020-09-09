@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {DialogActions, DialogContent, DialogTitle} from "../Customers/CustomerList/CustomerDialog";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
@@ -66,7 +66,13 @@ const DialogsTest = (props) => {
             setNumber(person.number);
 
         };
-    setPerson(person);
+    //setPerson(person);
+
+    useEffect( () => {
+        console.log(person)
+    }, [person])
+
+
 
     const f =() => {
         if(!name || !price || !number) {
@@ -147,7 +153,7 @@ const DialogsTest = (props) => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-                        product={
+
                         <form>
                             <div>
                                 <TextField
@@ -186,7 +192,7 @@ const DialogsTest = (props) => {
                                 />
                             </div>
                         </form>
-                    }
+
                     </Typography>
                 </DialogContent>
                 <DialogActions>

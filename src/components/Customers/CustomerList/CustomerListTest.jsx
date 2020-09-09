@@ -88,11 +88,10 @@ const CustomerListTest = (props) => {
                          product={product}
                          person={editPerson}
                          handleClickOpen={handleClickOpen}
-//                         windiwModalAdd={windiwModalAdd}
                          />
-{/*            useEffect( () => {
-            console.log(open)
-        }, [open])*/}
+            {/*useEffect( () => {
+            console.log(person)
+        }, [person])*/}
           {/*<Dialog onClose={handleClose}
                     aria-labelledby="customized-dialog-title"
                     open={open}
