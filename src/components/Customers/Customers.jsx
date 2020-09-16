@@ -6,7 +6,7 @@ const Customers = (props) => {
 
     return (
         <div className={classes.users}>
-            <h1>Customer list</h1>
+            <h1>Customer lis</h1>
 
             <CustomerList items={props.items}
                           usersEdit={props.usersEdit}

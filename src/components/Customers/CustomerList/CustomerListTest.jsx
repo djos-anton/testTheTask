@@ -48,7 +48,6 @@ const CustomerListTest = (props) => {
 
     const usersEdit = (id) => {
         let customersUrl = '/customers/' + id;
-
     }
 
     const dataListTest = useSelector(state => state.windowModalTest.itemsListTest);
@@ -67,7 +66,6 @@ const CustomerListTest = (props) => {
     return (
         <div className={classes.item}>
             <Button variant="outlined" color="primary" onClick={() => handleClickOpen()}>Add</Button>
-
             <List className={classes.table}>
                 {dataListTest.map((item, key) => {
                     return (
@@ -166,5 +164,4 @@ const CustomerListTest = (props) => {
         </div>
     );
 }
-
 export default CustomerListTest;

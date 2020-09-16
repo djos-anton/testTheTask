@@ -10,11 +10,11 @@ import {useDispatch} from "react-redux";
 const DialogsTest = (props) => {
     // debugger;
     const {person} = props;
-    console.log(props);
+    //console.log(props);
 //    const [open, setOpen] = useState(!!props.open);
-    const [name, setName] = useState( props.person && props.person.name ? props.person.name : "");
+    const [name, setName] = useState( props.person && props.person.name ? person.name : "");
     const [price, setPrice] = useState(props.person && props.person.price ? props.person.price : "");
-    const [number, setNumber] = useState('');
+    const [number, setNumber] = useState(props.person && props.person.number ? props.person.number : "");
     const [errorValue, setErrorValue] = useState(DEFAULT_ERROR);
     const [currentUser, setCurrentUser] = useState(props.person ? props.person : {});
     const [buttonRename, setButtonRename] = useState(true);
@@ -37,7 +37,13 @@ const DialogsTest = (props) => {
 
     const setPerson = (person) => {
 
-        if(!person) {
+
+        setCurrentUser(currentUser);
+        setName(currentUser.name);
+        setPrice(currentUser.price);
+        setNumber(currentUser.number);
+
+        /*if(!person) {
             if(person !== currentUser )
                 setCurrentUser(person);
 
@@ -51,9 +57,9 @@ const DialogsTest = (props) => {
                 setNumber("");
 
             return;
-        }
+        }*/
 
-        if(person !== currentUser )
+        /*if(person !== currentUser )
             setCurrentUser(person);
 
         if(person.name !== name)
@@ -63,16 +69,12 @@ const DialogsTest = (props) => {
             setPrice(person.price);
 
         if(person.number !== number)
-            setNumber(person.number);
+            setNumber(person.number);*/
 
         };
     //setPerson(person);
 
-    useEffect( () => {
-        console.log(person)
-    }, [person])
-
-
+   // console.log('Component render')
 
     const f =() => {
         if(!name || !price || !number) {
@@ -130,17 +132,35 @@ const DialogsTest = (props) => {
         handleClose();
     }
 
-    // let windiwModalAdd = () => {
-    //     setButtonRename(false);
-    //     setOpen(true);
-    //     setName('');
-    //     setPrice('');
-    //     setNumber('');
-    //     setCurrentUser(null);
-    //     setId(null);
-    //     setErrorValue(DEFAULT_ERROR);
-    // }
+    let windiwModalAdd = () => {
+         setButtonRename(false);
+         //setOpen(true);
+         setName('');
+         setPrice('');
+         setNumber('');
+         setCurrentUser(null);
+         setId(null);
+         setErrorValue(DEFAULT_ERROR);
+    }
+    /*useEffect( () => {
+        console.log('change render', price)
+    }, [price])*/
 
+    useEffect( () => { 
+        console.log('значение для отслеживания  props.person', props.person)},
+        [props.person])
+    useEffect( () => {
+        console.log('пустое значение для отслеживания')},
+        [])
+    useEffect( () => {
+        console.log('значение для отслеживания  person', person)},
+        [person])
+    useEffect( () => {
+        console.log('значение для отслеживания  props', props)},
+        [props])
+    useEffect( () => {
+        console.log('значение для отслеживания  number', number)},
+        [number])
 
     return (
         <div>
@@ -153,7 +173,6 @@ const DialogsTest = (props) => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-
                         <form>
                             <div>
                                 <TextField
@@ -192,26 +211,23 @@ const DialogsTest = (props) => {
                                 />
                             </div>
                         </form>
-
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-
                     {
-                        <Button autoFocus onClick={f} color="primary">
+                        <Button onClick={f} color="primary">
                             Save
                         </Button>
                     }
-
                     {
                         buttonRename ?
-                            <Button autoFocus onClick={() => onDispatchDelete(currentUser.id)}
+                            <Button onClick={() => onDispatchDelete(currentUser.id)}
                                     color="primary">
                                 Delete
                             </Button> :
                             null
                     }
-                    <Button autoFocus onClick={handleClose} color="primary">
+                    <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
 
@@ -220,5 +236,4 @@ const DialogsTest = (props) => {
         </div>
     );
 }
-
 export default DialogsTest;

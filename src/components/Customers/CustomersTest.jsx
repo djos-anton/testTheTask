@@ -40,7 +40,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 const CustomersTest = (props) => {
-    console.log(props);
+    //console.log(props);
     const {handleClickOpen, windiwModalAdd} = props;
     //console.log(props);
     return (
