@@ -38,8 +38,8 @@ const DialogsTest = (props) => {
     const setPerson = (person) => {
 
 
-        setCurrentUser(currentUser);
-        setName(currentUser.name);
+        setCurrentUser(person);
+        setName(person.name);
         setPrice(currentUser.price);
         setNumber(currentUser.number);
 
@@ -147,8 +147,8 @@ const DialogsTest = (props) => {
     }, [price])*/
 
     useEffect( () => { 
-        console.log('значение для отслеживания  props.person', props.person)},
-        [props.person])
+        console.log('значение для отслеживания')},
+        [])
     useEffect( () => {
         console.log('пустое значение для отслеживания')},
         [])

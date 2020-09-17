@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import classes from "./CustomerList.module.css";
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -44,6 +44,13 @@ const CustomerList = (props) => {
             number: false,
         });
     };
+
+    useEffect( () => {
+            console.log('значение для отслеживания currentUser', currentUser)},
+        [currentUser])
+    useEffect( () => {
+            console.log('значение для отслеживания currentUser.name', currentUser.name)},
+        [currentUser.name])
 
     const handleClose = () => {
         setOpen(false);
