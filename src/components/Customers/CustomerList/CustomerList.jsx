@@ -34,7 +34,7 @@ const CustomerList = (props) => {
     const handleClickOpen = (currentUser) => {
         setCurrentUser(currentUser);
         setOpen(true);
-        setName(currentUser.name);
+        //setName(currentUser.name);
         setPrice(currentUser.price);
         setNumber(currentUser.number);
         setButtonRename(true);

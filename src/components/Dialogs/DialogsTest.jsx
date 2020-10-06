@@ -37,38 +37,11 @@ const DialogsTest = (props) => {
 
     const setPerson = (person) => {
 
-        /*if(!person) {
-            if(person !== currentUser )
-                setCurrentUser(person);
+        if(person.name !== name ) {
+            setName(person.name)
+        } ;
 
-            if(!!name )
-                setName("");
-
-            if(!!price )
-                setPrice("");
-
-            if( !!number )
-                setNumber("");
-
-            return;
-        }*/
-
-        /*if(person !== currentUser )
-            setCurrentUser(person);
-
-        if(person.name !== name)
-            setName(person.name);
-
-        if(person.price !== price)
-            setPrice(person.price);
-
-        if(person.number !== number)
-            setNumber(person.number);*/
-
-        };
-    //setPerson(person);
-
-   // console.log('Component render')
+       };
 
     const f =() => {
         if(!name || !price || !number) {
@@ -146,8 +119,8 @@ const DialogsTest = (props) => {
         console.log('пустое значение для отслеживания')},
         [])
     useEffect( () => {
-        console.log('значение для отслеживания  person', person, person.name)},
-        [person && person.name])
+        console.log('значение для отслеживания  person', person)},
+        [person])
     useEffect( () => {
         console.log('значение для отслеживания  props', props)},
         [props])
